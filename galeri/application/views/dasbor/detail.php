@@ -22,7 +22,7 @@
 
 						<?php 
 						//kalau ada transaksi,tampilkan tabelnya
-						if($transaksi) { 
+						if($header_transaksi) { 
 						?>
 
 						<table class="table table-bordered">

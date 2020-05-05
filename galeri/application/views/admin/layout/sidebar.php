@@ -42,6 +42,20 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
+      <li class="nav-item ">
+        <a class="nav-link" href="<?php echo base_url('admin/transaksi') ?>">
+          <i class="fas fa-fw fa-check"></i>
+          <span>Data Transaksi</span></a>
+        </a>
+      </li>
+
+      <!-- menu rekening -->
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('admin/rekening') ?>">
+          <i class="fas fa-money-check"></i>
+          <span>Data Rekening</span></a>
+      </li>
+
       <!-- menu admin -->
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url('admin/user') ?>">

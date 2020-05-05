@@ -43,8 +43,12 @@
 									<td><?php echo $header_transaksi->total_item ?></td>
 									<td><?php echo $header_transaksi->status_bayar ?></td>
 									<td>
+										<div class="btn-group">
 										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-success btn-sm">
 											<i class="file-alt"></i>	 Detail </a>
+										<a href="<?php echo base_url('dasbor/konfirmasi/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-info btn-sm">
+											<i class="fa fa-upload"></i>	 Konfirmasi Pembayaran </a>
+											</div>
 									</td>
 								</tr>
 								<?php $i++; } ?>

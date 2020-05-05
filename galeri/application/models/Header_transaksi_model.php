@@ -12,14 +12,19 @@ class Header_transaksi_model extends CI_Model {
 	//listing all header_transaksi
 	public function listing()
 	{
-		$this->db->select('*');
+		$this->db->select('header_transaksi.*,
+							pelanggan.nama_pelanggan,
+			SUM(transaksi.jumlah) AS total_item');
 		$this->db->from('header_transaksi');
+		$this->db->join('transaksi', 'transaksi.kode_transaksi = header_transaksi.kode_transaksi', 'left');
+		$this->db->join('pelanggan', 'pelanggan.id_pelanggan = header_transaksi.id_pelanggan', 'left');
+		$this->db->group_by('header_transaksi.id_header_transaksi');
 		$this->db->order_by('id_header_transaksi', 'desc');
 		$query = $this->db->get();
 		return $query->result();
 	}
 
-	//
+	// listing all header transaksi dari pelanggan
 	public function pelanggan($id_pelanggan)
 	{
 		$this->db->select('header_transaksi.*,
@@ -37,9 +42,18 @@ class Header_transaksi_model extends CI_Model {
 	// Detail 
 	public function kode_transaksi($kode_transaksi)
 	{
-		$this->db->select('*');
+		$this->db->select('header_transaksi.*,
+							pelanggan.nama_pelanggan,
+							rekening.nama_bank AS bank,
+							rekening.nomor_rekening,
+							rekening.nama_pemilik,
+			SUM(transaksi.jumlah) AS total_item');
 		$this->db->from('header_transaksi');
-		$this->db->where('kode_transaksi', $kode_transaksi);
+		$this->db->join('transaksi', 'transaksi.kode_transaksi = header_transaksi.kode_transaksi', 'left');
+		$this->db->join('pelanggan', 'pelanggan.id_pelanggan = header_transaksi.id_pelanggan', 'left');
+		$this->db->join('rekening', 'rekening.id_rekening = header_transaksi.id_rekening', 'left');
+		$this->db->group_by('header_transaksi.id_header_transaksi');
+		$this->db->where('transaksi.kode_transaksi', $kode_transaksi);
 		$this->db->order_by('id_header_transaksi', 'desc');
 		$query = $this->db->get();
 		return $query->row();
