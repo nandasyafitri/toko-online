@@ -50,13 +50,13 @@
 							<div class="flex-sb-m flex-w p-t-16">
 								<div class="w-size11">
 									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" onclick="filterProducts()">
 										Filter
 									</button>
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
+									Range: <span id="value-lower">0</span> - <span id="value-upper">1000000</span>
 								</div>
 							</div>
 						</div>
@@ -205,3 +205,30 @@
 			</div>
 		</div>
 	</section>
+	
+<script>
+
+function filterProducts() {
+    // var lower_price = $('#value-lower').text()
+    // var upper_price = $('#value-upper').text()
+	var lower_price = 10000
+    var upper_price = 16000
+    $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url(); ?>produk/filter_by_price/',
+        data:{
+			lower_price:lower_price, 
+			upper_price:upper_price
+		},
+		beforeSend: function () {
+			alert(lower_price+"dan "+upper_price)
+        },
+        success: function (data) {
+            console.log(data)
+        },
+		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    	} 
+    });
+}
+</script>

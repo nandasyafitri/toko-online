@@ -17,7 +17,7 @@ class Home extends CI_Controller {
 	{
 		$site 		= $this->konfigurasi_model->listing();
 		$kategori 	= $this->konfigurasi_model->nav_produk();
-		$produk 	=$this->produk_model->home();
+		$produk 	= $this->produk_model->home();
 
 
 		$data = array(	'title' 	=> $site->namaweb.' | '.$site->tagline,
