@@ -42,9 +42,6 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 								<a href="about.html">About</a>
 							</li>
 
-							<li>
-								<a href="<?php echo base_url('kontak') ?>">Contact</a>
-							</li>
 						</ul>
 					</nav>
 				</div>
@@ -299,10 +296,6 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 
 					<li class="item-menu-mobile">
 						<a href="about.html">About</a>
-					</li>
-					<!-- menu kontak mobile -->
-					<li class="item-menu-mobile">
-						<a href="<?php echo base_url('kontak') ?>">Contact</a>
 					</li>
 				</ul>
 			</nav>

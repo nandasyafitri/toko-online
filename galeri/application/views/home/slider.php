@@ -5,7 +5,7 @@
 				<div class="item-slick1 item1-slick1" style="background-image: url(<?php echo base_url() ?>assets/template/images/master-slide-02.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-							Women Collection 2018
+							UMKM Collection 2020
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
@@ -24,7 +24,7 @@
 				<div class="item-slick1 item2-slick1" style="background-image: url(<?php echo base_url() ?>assets/template/images/master-slide-03.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rollIn">
-							Women Collection 2018
+							UMKM Collection 2020
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
@@ -43,7 +43,7 @@
 				<div class="item-slick1 item3-slick1" style="background-image: url(<?php echo base_url() ?>assets/template/images/master-slide-04.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
-							Women Collection 2018
+							UMKM Collection 2020
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
@@ -59,6 +59,41 @@
 					</div>
 				</div>
 
+			</div>
+		</div>
+	</section>
+
+	<!-- Shipping -->
+	<section class="shipping bgwhite p-t-62 p-b-46">
+		<div class="flex-w p-l-15 p-r-15">
+			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+				<h4 class="m-text12 t-center">
+					 Delivery Worldwide
+				</h4>
+
+				<a href="#" class="s-text11 t-center">
+					Click here for more info
+				</a>
+			</div>
+
+			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 bo2 respon2">
+				<h4 class="m-text12 t-center">
+					30 Days Return
+				</h4>
+
+				<span class="s-text11 t-center">
+					Simply return it within 30 days for an exchange.
+				</span>
+			</div>
+
+			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+				<h4 class="m-text12 t-center">
+					Store Opening
+				</h4>
+
+				<span class="s-text11 t-center">
+					Shop open from Monday to Sunday
+				</span>
 			</div>
 		</div>
 	</section>

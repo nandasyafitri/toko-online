@@ -3,7 +3,7 @@
 //load slider
 include('slider.php');
 // load kategori/baner
-//include('kategori.php');
+include('kategori.php');
 // load produk
 include('produk.php');
 //load Blog
