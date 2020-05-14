@@ -50,13 +50,13 @@
 							<div class="flex-sb-m flex-w p-t-16">
 								<div class="w-size11">
 									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" onclick="filterProducts()">
 										Filter
 									</button>
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
+									Range: IDR <span id="value-lower">0</span> - <span id="value-upper"></span>
 								</div>
 							</div>
 						</div>
@@ -146,7 +146,7 @@
 					</div>
 
 					<!-- Product -->
-					<div class="row">
+					<div class="row" id="produk">
 						<?php foreach ($produk as $produk) { ?>
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<?php 
@@ -205,3 +205,71 @@
 			</div>
 		</div>
 	</section>
+	
+<script>
+
+function filterProducts() {
+    var lower_price = $('#value-lower').text()
+	var upper_price = $('#value-upper').text()
+	$("#produk").remove()
+    $.ajax({
+		type: 'POST',
+   		dataType: "json",
+        url: '<?php echo base_url(); ?>produk/filter_by_price',
+        data:{
+			lower_price:lower_price, 
+			upper_price:upper_price
+		},
+		// beforeSend: function () {
+		// 	alert(lower_price+" dan "+upper_price)
+        // },
+        success: function (data) {
+			console.log(data)
+			var baris = ''			
+			if (data.length != 0) {
+                  $.each(data, function(index, obj) {
+					//   console.log(obj.nama_produk)					
+					baris += '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">';
+					baris += '<?php echo form_open(base_url("belanja/add"));?>';
+					baris += "<?php echo form_hidden('id', obj.id_produk);?>";
+					baris += "<?php echo form_hidden('qty', 1 ); ?>";
+					baris += "<?php echo form_hidden('price', obj.harga_produk); ?>";
+					baris += "<?php echo form_hidden('name', obj.nama_produk); ?>";
+					baris += "<?php echo form_hidden('redirect_page', str_replace('index.php/','', current_url())); ?>";
+					baris += '<div class="block2">'
+					baris += '<div class="block2-img wrap-pic-w of-hidden pos-relative">'
+					baris += "<img src="<?php echo base_url('assets/upload/image/thumbs/'.obj.foto_produk) ?>" alt='<?php echo obj.nama_produk ?>'>"
+					baris += '<div class="block2-overlay trans-0-4">'
+					baris += '<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">'
+					baris += '<i class="fa fa-eye" aria-hidden="true"></i>'
+					baris += '<i class="fa fa-eye dis-none" aria-hidden="true"></i>'
+					baris += '</a>'
+					baris += '<div class="block2-btn-addcart w-size1 trans-0-4">'
+					baris += '<button type="submit" value="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"> Add to Cart</button>'
+					baris += '</div>'
+					baris += '</div>'
+					baris += '</div>'
+					baris += '<div class="block2-txt p-t-20">'
+					baris += '<a href="<?php echo base_url("produk/detail/".obj.slug_produk) ?>" class="block2-name dis-block s-text3 p-b-5">'
+					baris += '<?php echo obj.nama_produk ?>'
+					baris += '</a>'
+					baris += '<span class="block2-price m-text6 p-r-5">'
+					baris += 'IDR <?php echo number_format(obj.harga_produk,'0',',','.') ?>'
+					baris += '</span>'
+					baris += '</div>'
+					baris += '</div>'
+					baris += '<?php echo form_close();?>'
+					baris += '</div>'
+					baris += '</div>'
+                  });
+            } else {
+				   console.log('tidak ada data')
+			}
+			$("#produk").append(baris);
+        },
+		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    	} 
+    });
+}
+</script>

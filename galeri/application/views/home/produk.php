@@ -1,4 +1,4 @@
-<!-- New Product -->
+z<!-- New Product -->
 	<section class="newproduct bgwhite p-t-45 p-b-105">
 		<div class="container">
 			<div class="sec-title p-b-60">

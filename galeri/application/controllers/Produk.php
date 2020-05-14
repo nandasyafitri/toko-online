@@ -152,6 +152,13 @@ class Produk extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
+	public function filter_by_price()
+	{	
+		$lower_price = $this->input->post('lower_price');
+		$upper_price = $this->input->post('upper_price');
+		echo json_encode($this->produk_model->filter_by_price($lower_price, $upper_price));
+	}
+
 }
 
 /* End of file Produk.php */

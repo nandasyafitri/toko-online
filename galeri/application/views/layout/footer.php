@@ -149,11 +149,11 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
+	        start: [ 10000, 50000 ],
 	        connect: true,
 	        range: {
-	            'min': 50,
-	            'max': 200
+	            'min': 1000,
+	            'max': 1000000
 	        }
 	    });
 
