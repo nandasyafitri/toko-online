@@ -214,7 +214,7 @@ class Produk_model extends CI_Model {
 	}
 	
 	//filter products by price
-	public function filter_by_price($lower_price, $upper_price ,$limit, $start){
+	public function filter_by_price($lower_price, $upper_price){
 		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto');
 		$this->db->from('produk');
 		//Join
@@ -222,11 +222,10 @@ class Produk_model extends CI_Model {
 		$this->db->join('foto', 'foto.id_produk = produk.id_produk', 'left');
 		// end join
 
-		$this->db->where('produk.harga_produk','>', $lower_price);
-		$this->db->where('produk.harga_produk','<', $upper_price);
+		$this->db->where('produk.harga_produk >', $lower_price);
+		$this->db->where('produk.harga_produk <', $upper_price);
 		$this->db->group_by('produk.id_produk');
 		$this->db->order_by('id_produk', 'desc');
-		$this->db->limit($limit,$start);
 		$query = $this->db->get();
 		return $query->result();
 	}
