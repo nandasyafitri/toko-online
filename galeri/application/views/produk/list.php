@@ -207,7 +207,16 @@
 	</section>
 	
 <script>
-
+// base url
+function base_url() {
+    var pathparts = location.pathname.split('/');
+    if (location.host == 'localhost') {
+        var url = location.origin+'/'+pathparts[1].trim('/')+'/'; // http://localhost/myproject/
+    }else{
+        var url = location.origin; // http://stackoverflow.com
+    }
+    return url;
+}
 function filterProducts() {
     var lower_price = $('#value-lower').text()
 	var upper_price = $('#value-upper').text()
@@ -225,42 +234,19 @@ function filterProducts() {
         // },
         success: function (data) {
 			console.log(data)
-			var baris = ''			
+			var baris = ''
+			var base_url = '<?php echo base_url();?>'
+			console.log(base_url)			
 			if (data.length != 0) {
                   $.each(data, function(index, obj) {
 					//   console.log(obj.nama_produk)					
-					baris += '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">';
-					baris += '<?php echo form_open(base_url("belanja/add"));?>';
-					baris += "<?php echo form_hidden('id', obj.id_produk);?>";
-					baris += "<?php echo form_hidden('qty', 1 ); ?>";
-					baris += "<?php echo form_hidden('price', obj.harga_produk); ?>";
-					baris += "<?php echo form_hidden('name', obj.nama_produk); ?>";
-					baris += "<?php echo form_hidden('redirect_page', str_replace('index.php/','', current_url())); ?>";
-					baris += '<div class="block2">'
-					baris += '<div class="block2-img wrap-pic-w of-hidden pos-relative">'
-					baris += "<img src="<?php echo base_url('assets/upload/image/thumbs/'.obj.foto_produk) ?>" alt='<?php echo obj.nama_produk ?>'>"
-					baris += '<div class="block2-overlay trans-0-4">'
-					baris += '<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">'
-					baris += '<i class="fa fa-eye" aria-hidden="true"></i>'
-					baris += '<i class="fa fa-eye dis-none" aria-hidden="true"></i>'
-					baris += '</a>'
-					baris += '<div class="block2-btn-addcart w-size1 trans-0-4">'
-					baris += '<button type="submit" value="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"> Add to Cart</button>'
-					baris += '</div>'
-					baris += '</div>'
-					baris += '</div>'
-					baris += '<div class="block2-txt p-t-20">'
-					baris += '<a href="<?php echo base_url("produk/detail/".obj.slug_produk) ?>" class="block2-name dis-block s-text3 p-b-5">'
-					baris += '<?php echo obj.nama_produk ?>'
-					baris += '</a>'
-					baris += '<span class="block2-price m-text6 p-r-5">'
-					baris += 'IDR <?php echo number_format(obj.harga_produk,'0',',','.') ?>'
-					baris += '</span>'
-					baris += '</div>'
-					baris += '</div>'
-					baris += '<?php echo form_close();?>'
-					baris += '</div>'
-					baris += '</div>'
+					baris += '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'
+					baris += '<form action="http://localhost/toko-online/galeri/belanja/add" method="post" accept-charset="utf-8">'
+					baris += '<input type="hidden" name="id" value="'+obj.id_produk+'"/>'
+					baris += '<input type="hidden" name="qty" value="1"/>'
+					baris += '<input type="hidden" name="price" value="'+obj.harga_produk+'"/>'
+					baris += '<input type="hidden" name="name" value="'+obj.nama_produk+'"/>'
+					baris += '<input type="hidden" name="redirect_page" value="http://localhost/toko-online/galeri/produk">'
                   });
             } else {
 				   console.log('tidak ada data')
