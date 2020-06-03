@@ -23,5 +23,37 @@ class Umkm_model extends CI_Model {
     public function cetak($kode_umkm)
     {
         
-    }
+	}
+	//listing all umkm
+	public function listing()
+	{
+		$this->db->select('umkm.*, kategori.nama_kategori');
+		$this->db->from('umkm');
+		$this->db->join('kategori','kategori.id_kategori = umkm.jenis_umkm', 'left');
+		$this->db->order_by('id_umkm', 'desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	// Detail kategori
+	public function detail($id_umkm)
+	{
+		$this->db->select('*');
+		$this->db->from('umkm');
+		$this->db->where('id_umkm', $id_umkm);
+		$this->db->order_by('id_umkm', 'desc');
+		$query = $this->db->get();
+		return $query->row();
+	}
+	// Edit
+	public function edit($data)
+	{
+		$this->db->where('id_umkm', $data['id_umkm']);
+		$this->db->update('umkm', $data);
+	}
+	//Delete
+	public function delete($data)
+	{
+		$this->db->where('id_umkm', $data['id_umkm']);
+		$this->db->delete('umkm', $data);
+	}
 }

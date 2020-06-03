@@ -37,13 +37,15 @@
 							    <tr>
 								  <td>Jenis UMKM</td>
 								  <td>
-								  <select name="jenis_umkm" class="form-control">
-									  <option value="makanan">Makanan</option>
-									  <option value="pakaian">Pakaian</option>
-									  <option value="akrilik">Akrilik</option>
-									  <option value="aksesoris">Aksesoris</option>
-									  <option value="Lain-lain">Lain-Lain</option>
-								  </select>
+								  <div class="from-group row ">
+									<div class="col-sm-5">
+											<select class="form-control" name="jenis_umkm">
+											<?php foreach($kategori as $kategori){ ?>
+												<option value="<?php echo $kategori->id_kategori?>"><?php echo $kategori->nama_kategori?></option>
+											<?php }?>
+											</select>
+										</div>
+									</div>
 								  </td>
 							    </tr>
 							    <tr>

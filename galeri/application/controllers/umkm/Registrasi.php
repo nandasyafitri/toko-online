@@ -8,6 +8,7 @@ class Registrasi extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('umkm_model');
+		$this->load->model('kategori_model');
 		$this->load->helper('string');
 	}
 
@@ -25,8 +26,9 @@ class Registrasi extends CI_Controller {
 
 		if ($valid->run()===FALSE) {
 		// End Validasi
-
+		$kategori = $this->kategori_model->listing();
 		$data = array(	'title' => 'Registrasi UMKM',
+						'kategori'  => $kategori,
 						'isi'	=> 'umkm/registrasi/list'
 					 );
 		$this->load->view('layout/wrapper', $data, FALSE);

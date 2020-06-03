@@ -35,7 +35,19 @@
  	<div class="card-header py-3 bg-primary mb-3">
  	</div>
  	<div class="card-body">
-
+	 <div class="from-group row ">
+			<label class="col-sm-2 col-form-label">Nama UMKM</label>
+		   <div class="col-sm-5">
+		   	<select name="id_umkm" class="form-control">
+		   		<?php foreach ($umkm as $umkm) { ?>
+				<option value="<?php echo $umkm->id_umkm ?>" <?php if($produk->id_umkm==$umkm->id_umkm) { echo "selected"; } ?>>
+						<?php echo $umkm->nama_umkm ?>
+				</option>	
+		   	  <?php	} ?>
+		   	</select>
+		   </div>
+		</div>
+		<br>
  		<div class="from-group row ">
 			<label class="col-sm-2 col-form-label">Kategori Produk</label>
 		   <div class="col-sm-5">
