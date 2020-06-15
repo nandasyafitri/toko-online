@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2020 at 05:31 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Waktu pembuatan: 16 Jun 2020 pada 01.28
+-- Versi server: 10.3.15-MariaDB
+-- Versi PHP: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -34,16 +36,17 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `nama_lengkap`, `username`, `password`) VALUES
+(7, 'nanda', 'nanda', 'c4ca4238a0b923820dcc509a6f75849b'),
 (8, 'Alda Elvira', 'adminn', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Struktur dari tabel `blog`
 --
 
 CREATE TABLE `blog` (
@@ -53,10 +56,17 @@ CREATE TABLE `blog` (
   `isi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `blog`
+--
+
+INSERT INTO `blog` (`id_blog`, `gambar`, `judul`, `isi`) VALUES
+(2, 'hot_coffee_mug-5121.png', '134567', '<p><em>asdfghjk??</em></p>\r\n');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto`
+-- Struktur dari tabel `foto`
 --
 
 CREATE TABLE `foto` (
@@ -67,7 +77,7 @@ CREATE TABLE `foto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `foto`
+-- Dumping data untuk tabel `foto`
 --
 
 INSERT INTO `foto` (`id_foto`, `id_produk`, `judul_foto`, `foto`) VALUES
@@ -76,7 +86,7 @@ INSERT INTO `foto` (`id_foto`, `id_produk`, `judul_foto`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `header_transaksi`
+-- Struktur dari tabel `header_transaksi`
 --
 
 CREATE TABLE `header_transaksi` (
@@ -85,30 +95,35 @@ CREATE TABLE `header_transaksi` (
   `nama_pelanggan` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `telepon_pelanggan` varchar(30) DEFAULT NULL,
-  `alamat_pelanggan` text,
+  `provinsi_tujuan` int(11) NOT NULL,
+  `kota_tujuan` int(11) NOT NULL,
+  `alamat_pelanggan` text DEFAULT NULL,
   `kode_transaksi` varchar(255) NOT NULL,
   `tanggal_transaksi` datetime NOT NULL,
   `jumlah_transaksi` int(11) NOT NULL,
   `status_bayar` varchar(30) NOT NULL,
+  `resi` varchar(100) NOT NULL,
   `jumlah_bayar` int(11) DEFAULT NULL,
   `rekening_pembayaran` varchar(50) DEFAULT NULL,
   `rekening_pelanggan` varchar(50) DEFAULT NULL,
   `bukti_bayar` varchar(50) DEFAULT NULL,
+  `id_rekening` int(11) DEFAULT NULL,
+  `tanggal_bayar` varchar(50) DEFAULT NULL,
+  `nama_bank` varchar(50) DEFAULT NULL,
   `tanggal_post` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `header_transaksi`
+-- Dumping data untuk tabel `header_transaksi`
 --
 
-INSERT INTO `header_transaksi` (`id_header_transaksi`, `id_pelanggan`, `nama_pelanggan`, `email`, `telepon_pelanggan`, `alamat_pelanggan`, `kode_transaksi`, `tanggal_transaksi`, `jumlah_transaksi`, `status_bayar`, `jumlah_bayar`, `rekening_pembayaran`, `rekening_pelanggan`, `bukti_bayar`, `tanggal_post`) VALUES
-(1, 2, 'Alia', 'alia@gmail.com', '0823456785', '							      		Kualasimpang						      	', '26042020EOPVHRFS', '2020-04-26 00:00:00', 15000, 'Belum', NULL, NULL, NULL, NULL, '2020-04-26 18:31:57'),
-(4, 2, 'Alia', 'alia@gmail.com', '0823456785', '							      		Kualasimpang						      	', '26042020HDBANJQP', '2020-04-26 00:00:00', 15000, 'Belum', NULL, NULL, NULL, NULL, '2020-04-26 18:36:12');
+INSERT INTO `header_transaksi` (`id_header_transaksi`, `id_pelanggan`, `nama_pelanggan`, `email`, `telepon_pelanggan`, `provinsi_tujuan`, `kota_tujuan`, `alamat_pelanggan`, `kode_transaksi`, `tanggal_transaksi`, `jumlah_transaksi`, `status_bayar`, `resi`, `jumlah_bayar`, `rekening_pembayaran`, `rekening_pelanggan`, `bukti_bayar`, `id_rekening`, `tanggal_bayar`, `nama_bank`, `tanggal_post`) VALUES
+(31, 5, 'Nanda', 'syafitrinanda@gmail.com', '1', 1, 17, '							      				1				      	', '16062020ZRH76NGV', '2020-06-16 04:23:07', 112000, 'Dikirim', '12345', 112000, 's', 's', 'ERD.png', 1, '16-06-2020', 's', '2020-06-16 04:23:27');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -119,7 +134,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kategori`, `urutan`) VALUES
@@ -131,20 +146,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kategori`, `urutan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keranjang`
---
-
-CREATE TABLE `keranjang` (
-  `id_keranjang` int(30) NOT NULL,
-  `id_produk` int(30) NOT NULL,
-  `id_pelanggan` int(30) NOT NULL,
-  `jumlah` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `konfigurasi`
+-- Struktur dari tabel `konfigurasi`
 --
 
 CREATE TABLE `konfigurasi` (
@@ -156,66 +158,55 @@ CREATE TABLE `konfigurasi` (
   `keywords` text NOT NULL,
   `metatext` text NOT NULL,
   `telepon` varchar(15) NOT NULL,
+  `id_provinsi` int(11) NOT NULL,
+  `id_kota` int(11) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `facebook` varchar(100) NOT NULL,
   `instagram` varchar(100) NOT NULL,
   `deskripsi` text NOT NULL,
+  `about` text NOT NULL,
+  `syarat_ketentuan` text NOT NULL,
   `logo` varchar(30) NOT NULL,
   `icon` varchar(30) NOT NULL,
-  `rekening_pembayaran` varchar(30) NOT NULL,
-  `tanggal_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `tanggal_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `konfigurasi`
+-- Dumping data untuk tabel `konfigurasi`
 --
 
-INSERT INTO `konfigurasi` (`id_konfigurasi`, `namaweb`, `tagline`, `email`, `website`, `keywords`, `metatext`, `telepon`, `alamat`, `facebook`, `instagram`, `deskripsi`, `logo`, `icon`, `rekening_pembayaran`, `tanggal_update`) VALUES
-(1, 'Galeri Ajang Ambe', 'Produk UMK', 'galeri@gmail.com', 'Galeri Ajang Ambe', '												galeri ajang ambe				', '												ajang ambe', '6222-3443-5566', '												Gampong Bundar, Karang Baru, Aceh Tami', 'https://www.facebook.com/Galeri-Pertama-Ajang-Ambe-Aceh-Tamiang', 'https://www.instagram.com/galeriajangambe', '												Pusat oleh-oleh Aceh Tamiang		', 'ajang.jpg', 'ajang1.jpg', '												BRI 03893872378476', '2020-03-20 03:52:57');
+INSERT INTO `konfigurasi` (`id_konfigurasi`, `namaweb`, `tagline`, `email`, `website`, `keywords`, `metatext`, `telepon`, `id_provinsi`, `id_kota`, `alamat`, `facebook`, `instagram`, `deskripsi`, `about`, `syarat_ketentuan`, `logo`, `icon`, `tanggal_update`) VALUES
+(1, 'Galeri Ajang Ambe', 'Produk UMK', 'galeri@gmail.com', 'Galeri Ajang Ambe', '																				galeri ajang ambe				', '																				ajang ambe', '6222-3443-5566', 21, 7, '																				Gampong Bundar, Karang Baru, A', 'https://www.facebook.com/Galeri-Pertama-Ajang-Ambe-Aceh-Tamiang', 'https://www.instagram.com/galeriajangambe', '																				Pusat oleh-oleh Aceh Tamiang		', '				galeri ajang ambe adalah', '		sayarat dan ketentuan		', 'ajang.jpg', 'ajang1.jpg', '2020-06-15 15:04:16');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pelanggan`
+-- Struktur dari tabel `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
   `id_pelanggan` int(30) NOT NULL,
   `nama_pelanggan` varchar(50) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `telepon_pelanggan` varchar(20) NOT NULL,
   `alamat_pelanggan` text NOT NULL,
   `tanggal_daftar` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pelanggan`
+-- Dumping data untuk tabel `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email`, `password`, `telepon_pelanggan`, `alamat_pelanggan`, `tanggal_daftar`) VALUES
-(1, 'Alda Elvira', 'alda@gmail.com', '827ccb0eea8a706c4c34a16891f84e', '0876567890', '	Aceh						      	', '2020-04-26 08:05:46.000000'),
-(2, 'Alia', 'alia@gmail.com', 'a01610228fe998f515a72dd730294d', '0823456785', '	Kualasimpang						      	', '2020-04-26 18:31:28.000000');
+(4, 'Alda Elvira', 'alda@gmail.com', 'f897b8d1e5cc779db28d2cbed3eaf188', '082245678767', 'Kualasimpang						      	', '2020-04-29 17:11:14.000000'),
+(5, 'Nanda', 'syafitrinanda@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', '1', '			1				      	', '2020-05-19 11:02:46.000000'),
+(6, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'nanda99@mhs.unsyiah.ac.id', 'c4ca4238a0b923820dcc509a6f75849b', '0808080', 'alamat', '2020-06-15 23:01:02.000000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
---
-
-CREATE TABLE `pembayaran` (
-  `id_pembelian` int(30) NOT NULL,
-  `nama_bayar` varchar(50) NOT NULL,
-  `bank_bayar` varchar(30) NOT NULL,
-  `tanggal_bayar` datetime NOT NULL,
-  `jumlah_bayar` int(30) NOT NULL,
-  `bukti_bayar` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pembelian`
+-- Struktur dari tabel `pembelian`
 --
 
 CREATE TABLE `pembelian` (
@@ -230,52 +221,13 @@ CREATE TABLE `pembelian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembelian_produk`
---
-
-CREATE TABLE `pembelian_produk` (
-  `id_pembelian` int(30) NOT NULL,
-  `id_produk` int(30) NOT NULL,
-  `jumlah` int(30) NOT NULL,
-  `nama_beli` varchar(50) NOT NULL,
-  `harga_beli` int(30) NOT NULL,
-  `berat_beli` int(30) NOT NULL,
-  `subbharga_beli` int(30) NOT NULL,
-  `subberat_beli` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pengiriman`
---
-
-CREATE TABLE `pengiriman` (
-  `id_pembelian` int(30) NOT NULL,
-  `nama_penerima` varchar(50) NOT NULL,
-  `telepon_penerima` int(30) NOT NULL,
-  `provinsi_penerima` varchar(50) NOT NULL,
-  `distrik_penerima` varchar(50) NOT NULL,
-  `tipe_penerima` enum('kota','kabupaten') NOT NULL,
-  `kodepos_penerima` varchar(5) NOT NULL,
-  `alamat_penerima` text NOT NULL,
-  `ekspedisi_pengiriman` varchar(30) NOT NULL,
-  `paket_pengiriman` varchar(30) NOT NULL,
-  `estimasi_pengiriman` varchar(30) NOT NULL,
-  `berat_pengiriman` int(30) NOT NULL,
-  `ongkos_pengiriman` int(30) NOT NULL,
-  `resi_pengiriman` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `produk`
+-- Struktur dari tabel `produk`
 --
 
 CREATE TABLE `produk` (
   `id_produk` int(30) NOT NULL,
   `id_kategori` int(30) NOT NULL,
+  `id_umkm` int(11) NOT NULL,
   `nama_produk` varchar(100) NOT NULL,
   `slug_produk` varchar(100) NOT NULL,
   `kode_produk` varchar(30) NOT NULL,
@@ -283,22 +235,46 @@ CREATE TABLE `produk` (
   `berat_produk` int(15) NOT NULL,
   `foto_produk` varchar(100) NOT NULL,
   `deskripsi_produk` text NOT NULL,
+  `warna` text NOT NULL,
   `stok_produk` int(15) NOT NULL,
   `status_produk` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `produk`
+-- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `slug_produk`, `kode_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `deskripsi_produk`, `stok_produk`, `status_produk`) VALUES
-(1, 2, 'Tas 1', 'tas-1-ts01', 'ts01', 30000, 600, '20200317_115341.jpg', '<p>tas bagus</p>\r\n', 2, 'Publish'),
-(2, 3, 'Rubik', 'rubik-rb001', 'rb001', 15000, 100, 'rubik.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,&nbsp;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n', 3, 'Publish');
+INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_umkm`, `nama_produk`, `slug_produk`, `kode_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `deskripsi_produk`, `warna`, `stok_produk`, `status_produk`) VALUES
+(1, 2, 12, 'Tas 1', 'tas-1-ts01', 'ts01', 30000, 600, '20200317_115341.jpg', '<p>tas bagus</p>\r\n', 'merah-coklat,hitam-kuning', 7, 'Publish'),
+(11, 4, 12, 'Keripik', 'keripik-abc', 'abc', 5000, 300, 'Untitled.png', '<p>hehehhe</p>\r\n', 'merah', 8, 'Publish'),
+(12, 1, 13, 'Kemeja', 'kemeja-yuyu', 'yuyu', 50000, 500, 'b.png', '<p>zxzxzxzx</p>\r\n', 'kuning,ijo', 4, 'Publish');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `rekening`
+--
+
+CREATE TABLE `rekening` (
+  `id_rekening` int(11) NOT NULL,
+  `nama_bank` varchar(50) NOT NULL,
+  `nomor_rekening` varchar(20) NOT NULL,
+  `nama_pemilik` varchar(50) NOT NULL,
+  `gambar` varchar(255) DEFAULT NULL,
+  `tanggal_post` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `rekening`
+--
+
+INSERT INTO `rekening` (`id_rekening`, `nama_bank`, `nomor_rekening`, `nama_pemilik`, `gambar`, `tanggal_post`) VALUES
+(1, 'Mandiri', '1546787690', 'Alia', NULL, '2020-05-05 06:42:06');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -306,6 +282,7 @@ CREATE TABLE `transaksi` (
   `id_pelanggan` int(30) NOT NULL,
   `kode_transaksi` varchar(255) NOT NULL,
   `id_produk` int(30) NOT NULL,
+  `warna` varchar(50) NOT NULL,
   `harga` int(30) NOT NULL,
   `jumlah` int(30) NOT NULL,
   `total_harga` int(30) NOT NULL,
@@ -313,232 +290,210 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_pelanggan`, `kode_transaksi`, `id_produk`, `harga`, `jumlah`, `total_harga`, `tanggal_transaksi`) VALUES
-(1, 2, '26042020HDBANJQP', 2, 15000, 1, 15000, '2020-04-26 00:00:00');
+INSERT INTO `transaksi` (`id_transaksi`, `id_pelanggan`, `kode_transaksi`, `id_produk`, `warna`, `harga`, `jumlah`, `total_harga`, `tanggal_transaksi`) VALUES
+(36, 5, '16062020ZRH76NGV', 12, 'kuning', 50000, 1, 50000, '2020-06-16 04:23:07');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `umkm`
+-- Struktur dari tabel `umkm`
 --
 
 CREATE TABLE `umkm` (
   `id_umkm` int(30) NOT NULL,
   `nama_pengusaha` varchar(50) NOT NULL,
   `telepon` varchar(30) NOT NULL,
+  `id_provinsi` int(11) NOT NULL,
+  `id_kota` int(11) NOT NULL,
   `alamat` text NOT NULL,
   `nama_umkm` varchar(50) NOT NULL,
-  `jenis_umkm` varchar(30) NOT NULL
+  `jenis_umkm` varchar(30) NOT NULL,
+  `kode_umkm` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `umkm`
+--
+
+INSERT INTO `umkm` (`id_umkm`, `nama_pengusaha`, `telepon`, `id_provinsi`, `id_kota`, `alamat`, `nama_umkm`, `jenis_umkm`, `kode_umkm`) VALUES
+(12, 'Anda', '0909090900000', 21, 359, 'kecamatan Meurah Dua', 'ANDA', '4', '8OJNRY'),
+(13, 'Nanda Syafitri', '09090909', 6, 151, 'xxxxxxxxxxxxxxxx', 'halo halo', '1', 'FYLO4D');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `blog`
+-- Indeks untuk tabel `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id_blog`);
 
 --
--- Indexes for table `foto`
+-- Indeks untuk tabel `foto`
 --
 ALTER TABLE `foto`
   ADD PRIMARY KEY (`id_foto`);
 
 --
--- Indexes for table `header_transaksi`
+-- Indeks untuk tabel `header_transaksi`
 --
 ALTER TABLE `header_transaksi`
   ADD PRIMARY KEY (`id_header_transaksi`),
   ADD UNIQUE KEY `kode_transaksi` (`kode_transaksi`);
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `keranjang`
---
-ALTER TABLE `keranjang`
-  ADD PRIMARY KEY (`id_keranjang`),
-  ADD KEY `id_produk` (`id_produk`),
-  ADD KEY `id_pelanggan` (`id_pelanggan`);
-
---
--- Indexes for table `konfigurasi`
+-- Indeks untuk tabel `konfigurasi`
 --
 ALTER TABLE `konfigurasi`
   ADD PRIMARY KEY (`id_konfigurasi`);
 
 --
--- Indexes for table `pelanggan`
+-- Indeks untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
 
 --
--- Indexes for table `pembayaran`
---
-ALTER TABLE `pembayaran`
-  ADD KEY `id_pembelian` (`id_pembelian`);
-
---
--- Indexes for table `pembelian`
+-- Indeks untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`id_pembelian`),
   ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
--- Indexes for table `pembelian_produk`
---
-ALTER TABLE `pembelian_produk`
-  ADD KEY `id_pembelian` (`id_pembelian`),
-  ADD KEY `id_produk` (`id_produk`);
-
---
--- Indexes for table `pengiriman`
---
-ALTER TABLE `pengiriman`
-  ADD KEY `id_pembelian` (`id_pembelian`);
-
---
--- Indexes for table `produk`
+-- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
--- Indexes for table `transaksi`
+-- Indeks untuk tabel `rekening`
+--
+ALTER TABLE `rekening`
+  ADD PRIMARY KEY (`id_rekening`),
+  ADD UNIQUE KEY `nomor_rekening` (`nomor_rekening`);
+
+--
+-- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
--- Indexes for table `umkm`
+-- Indeks untuk tabel `umkm`
 --
 ALTER TABLE `umkm`
   ADD PRIMARY KEY (`id_umkm`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `blog`
+-- AUTO_INCREMENT untuk tabel `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id_blog` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_blog` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `foto`
+-- AUTO_INCREMENT untuk tabel `foto`
 --
 ALTER TABLE `foto`
   MODIFY `id_foto` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `header_transaksi`
+-- AUTO_INCREMENT untuk tabel `header_transaksi`
 --
 ALTER TABLE `header_transaksi`
-  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `keranjang`
---
-ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(30) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `konfigurasi`
+-- AUTO_INCREMENT untuk tabel `konfigurasi`
 --
 ALTER TABLE `konfigurasi`
   MODIFY `id_konfigurasi` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `pelanggan`
+-- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pelanggan` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `pembelian`
+-- AUTO_INCREMENT untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
   MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `produk`
+-- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produk` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
--- AUTO_INCREMENT for table `transaksi`
+-- AUTO_INCREMENT untuk tabel `rekening`
+--
+ALTER TABLE `rekening`
+  MODIFY `id_rekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_transaksi` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
 --
--- AUTO_INCREMENT for table `umkm`
+-- AUTO_INCREMENT untuk tabel `umkm`
 --
 ALTER TABLE `umkm`
-  MODIFY `id_umkm` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_umkm` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `keranjang`
---
-ALTER TABLE `keranjang`
-  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `keranjang_ibfk_2` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `pembayaran`
---
-ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `pembelian`
+-- Ketidakleluasaan untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD CONSTRAINT `pembelian_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pembelian_produk`
---
-ALTER TABLE `pembelian_produk`
-  ADD CONSTRAINT `pembelian_produk_ibfk_1` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembelian_produk_ibfk_2` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `pengiriman`
---
-ALTER TABLE `pengiriman`
-  ADD CONSTRAINT `pengiriman_ibfk_1` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `produk`
+-- Ketidakleluasaan untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
