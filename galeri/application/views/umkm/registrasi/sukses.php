@@ -34,7 +34,7 @@
 									<td><?php echo $data->telepon ?></td>
 									<td><?php echo $data->alamat ?></td>
 									<td><?php echo $data->nama_umkm ?></td>
-									<td><?php echo $data->jenis_umkm ?></td>
+									<td><?php echo $data->nama_kategori ?></td>
 									<td><?php echo $data->kode_umkm ?></td>
 									<td><a href="<?php echo base_url('umkm/registrasi/cetak/'.$data->kode_umkm) ?>" target="_blank" class="btn btn-info btn-sm">
 								<i class="fa fa-print"></i>	  Cetak </a></td>

@@ -11,15 +11,24 @@
 					<div class="clearfix"></div>
 				
 					<?php if ($this->session->flashdata('sukses')) {
-						echo '<div class="alert alert-warning">';
+						echo '<div class="alert alert-info">';
 						echo $this->session->flashdata('sukses');
+						echo '</div>';
+					} ?>
+					<?php if ($this->session->flashdata('gagal')) {
+						echo '<div class="alert alert-warning">';
+						echo $this->session->flashdata('gagal');
 						echo '</div>';
 					} ?>
 
 					<table class="table-shopping-cart">
+					<?php echo var_dump($this->cart->contents())?>
+					<?php $s = $this->produk_model->getStok(11)->stok_produk?>
+					<?php echo $s?>
 						<tr class="table-head">
 							<th class="column-1">GAMBAR</th>
 							<th class="column-2">PRODUK</th>
+							<th class="column-2">WARNA</th>
 							<th class="column-4" width="20%">HARGA</th>
 							<th class="column-4 p-l-70">JUMLAH</th>
 							<th class="column-5" width="20%">SUB-TOTAL</th>
@@ -42,7 +51,9 @@
 									<img src="<?php echo base_url('assets/upload/image/thumbs/'.$produk->foto_produk) ?>" alt="<?php echo $keranjang['name'] ?>">
 								</div>
 							</td>
-							<td class="column-2"><?php echo $keranjang['name'] ?></td>
+							<input type="hidden" name="id_produk" value="<?php echo $id_produk ?>">
+							<td class="column-2"><?php echo $keranjang['name'] .$keranjang['qty'] ?></td>
+							<td class="column-2"><?php echo $keranjang['options'].$keranjang['id'] ?></td>
 							<td class="column-3">Rp. <?php echo number_format($keranjang['price'],'0',',','.') ?></td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">

@@ -151,8 +151,7 @@ class Produk extends CI_Controller {
 
 			$this->image_lib->resize();
 		 	// end create thumbnail
-
-		 	$i = $this->input;
+			$i = $this->input;
 		 	$slug_produk = url_title($this->input->post('nama_produk').'-'.$this->input->post('kode_produk'), 'dash', TRUE);
 		 	$data = array('id_kategori' 		=> $i->post('id_kategori'),
 						  'nama_produk' 		=> $i->post('nama_produk'),
@@ -164,7 +163,8 @@ class Produk extends CI_Controller {
 						  'deskripsi_produk' 	=> $i->post('deskripsi_produk'),
 						  'stok_produk' 		=> $i->post('stok_produk'),
 						  'status_produk' 		=> $i->post('status_produk'),
-						  'id_umkm'				=> $i->post('id_umkm')
+						  'id_umkm'				=> $i->post('id_umkm'),
+						  'warna'				=> $i->post('warna')
 					);
 		 	$this->produk_model->tambah($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Tambah');
@@ -253,7 +253,8 @@ class Produk extends CI_Controller {
 						  'deskripsi_produk' 	=> $i->post('deskripsi_produk'),
 						  'stok_produk' 		=> $i->post('stok_produk'),
 						  'status_produk' 		=> $i->post('status_produk'),
-						  'id_umkm'				=> $i->post('id_umkm')
+						  'id_umkm'				=> $i->post('id_umkm'),
+						  'warna'				=> $i->post('warna')
 					);
 		 	$this->produk_model->edit($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Edit');
@@ -274,7 +275,8 @@ class Produk extends CI_Controller {
 						  'deskripsi_produk' 	=> $i->post('deskripsi_produk'),
 						  'stok_produk' 		=> $i->post('stok_produk'),
 						  'status_produk' 		=> $i->post('status_produk'),
-						  'id_umkm'				=> $i->post('id_umkm')
+						  'id_umkm'				=> $i->post('id_umkm'),
+						  'warna'				=> $i->post('warna')
 					);
 		 	$this->produk_model->edit($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Edit');

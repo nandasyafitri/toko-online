@@ -14,8 +14,9 @@ class Umkm_model extends CI_Model {
 	}
 	public function get_data_umkm($kode_umkm)
 	{
-		$this->db->select('*');
+		$this->db->select('umkm.*, kategori.nama_kategori');
 		$this->db->from('umkm');
+		$this->db->join('kategori','kategori.id_kategori = umkm.jenis_umkm', 'left');
 		$this->db->where('kode_umkm', $kode_umkm);
 		$query = $this->db->get();
 		return $query->result();

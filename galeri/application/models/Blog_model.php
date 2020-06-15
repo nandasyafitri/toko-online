@@ -42,6 +42,33 @@ class Blog_model extends CI_Model {
 	{
 		$this->db->where('id_blog', $data['id_blog']);
 		$this->db->update('blog', $data);
-	}	
+	}
+	//Total Blog
+	public function total_blog()
+	{
+		$this->db->select('COUNT(*) AS total');
+		$this->db->from('blog');
+		$query	= $this->db->get();
+		return $query->row();
+
+	}
+	//Tampil Blog
+	public function blog($limit,$start)
+	{
+		$this->db->select('*');
+		$this->db->from('blog');
+		$this->db->limit($limit,$start);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	//Read Blog
+	public function read($id)
+	{
+		$this->db->select('*');
+		$this->db->from('blog');
+		$this->db->where('blog.id_blog', $id);
+		$query = $this->db->get();
+		return $query->row();
+	}
 
 }

@@ -106,6 +106,14 @@
 		</div>
 		<br>
 		<div class="from-group row ">
+			<label class="col-sm-2 col-form-label">Variasi Warna</label>
+		   <div class="col-sm-10">
+				<textarea class="form-control" name="warna" placeholder="variasi warna"></textarea>
+				<small style="color:red">warna pisahkan dengan koma(,). Cth: merah,biru,kuning</small>
+			</div>
+		</div>
+		<br>
+		<div class="from-group row ">
 			<label class="col-sm-2 col-form-label">Stok Produk</label>
 		   <div class="col-sm-5">
 			<input type="number" name="stok_produk" class="form-control" placeholder="Stok Produk" value="<?php echo set_value('stok_produk') ?>" required>
@@ -127,7 +135,7 @@
 			<label class="col-sm-2 col-form-label"></label>
 		   <div class="col-sm-5">
 				<button class="btn btn-primary btn-sm" name="submit" type="submit">
-					<i class="fa fa-save">	 Simpan</i>
+					<i class="fa fa-save" >	 Simpan</i>
 				</button>
 				<button class="btn btn-info btn-sm" name="reset" type="reset">
 					<i class="fa fa-times">	 Reset</i>
@@ -147,5 +155,3 @@
 
 
 <?php echo form_close(); ?>
-
-

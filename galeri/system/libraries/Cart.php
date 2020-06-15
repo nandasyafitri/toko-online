@@ -192,9 +192,9 @@ class CI_Cart {
 		// --------------------------------------------------------------------
 
 		// Does the $items array contain an id, quantity, price, and name?  These are required
-		if ( ! isset($items['id'], $items['qty'], $items['price'], $items['name']))
+		if ( ! isset($items['id'], $items['qty'], $items['price'], $items['name'], $items['options']))
 		{
-			log_message('error', 'The cart array must contain a product ID, quantity, price, and name.');
+			log_message('error', 'The cart array must contain a product ID, quantity, price, color and name.');
 			return FALSE;
 		}
 

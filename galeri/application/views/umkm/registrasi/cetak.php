@@ -82,16 +82,16 @@
                     </tr>
                     <tr>
                         <th width="20%">JENIS UMKM</th>
-                        <th> : <?php echo $data->jenis_umkm ?></th>
+                        <th> : <?php echo $data->nama_kategori ?></th>
                     </tr>
                     <tr>
                         <th width="20%">TELEPON</th>
                         <th> : <?php echo $data->telepon ?></th>
                     </tr>
-                    <tr>
+					<tr>
                         <th width="20%">ALAMAT</th>
                         <th> : <?php echo $data->alamat ?></th>
-                    </tr>                    
+                    </tr>                   
                 <?php }?>
 			</thead>
 			<tbody>

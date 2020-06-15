@@ -15,6 +15,32 @@ class Registrasi extends CI_Controller {
 	//Halaman registrasi
 	public function index()
 	{	
+		//ambil data provinsi dari api raja ongkir
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: 6a26ff0bce7ba763143451d8e6a2a315"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$provinsi = json_decode($response, true);
+		}
+
 
 		//Validasi Input
 		$valid = $this->form_validation;
@@ -23,13 +49,16 @@ class Registrasi extends CI_Controller {
 		$valid->set_rules('jenis_umkm', 'Jenis UMKM','required', array('required' => '%s Harus Diisi' ));
 		$valid->set_rules('telepon', 'Telepon','required', array('required' => '%s Harus Diisi' ));
 		$valid->set_rules('alamat', 'Alamat','required', array('required' => '%s Harus Diisi' ));
+		$valid->set_rules('id_provinsi', 'Provinsi','required', array('required' => '%s Harus Diisi' ));
+		$valid->set_rules('id_kota', 'Kota/Kabupaten','required', array('required' => '%s Harus Diisi' ));
 
 		if ($valid->run()===FALSE) {
 		// End Validasi
 		$kategori = $this->kategori_model->listing();
-		$data = array(	'title' => 'Registrasi UMKM',
+		$data = array(	'title' 	=> 'Registrasi UMKM',
 						'kategori'  => $kategori,
-						'isi'	=> 'umkm/registrasi/list'
+						'provinsi'	=> $provinsi,
+						'isi'		=> 'umkm/registrasi/list'
 					 );
 		$this->load->view('layout/wrapper', $data, FALSE);
 
@@ -40,6 +69,8 @@ class Registrasi extends CI_Controller {
 							'nama_umkm' 		=> $i->post('nama_umkm'),
 							'jenis_umkm'        => $i->post('jenis_umkm'),
 							'telepon' 	        => $i->post('telepon'),
+							'id_provinsi'		=> $i->post('id_provinsi'),
+							'id_kota'			=> $i->post('id_kota'),
 							'alamat' 	        => $i->post('alamat'),
 							'kode_umkm'			=> $i->post('kode_umkm')
 					);
@@ -72,7 +103,40 @@ class Registrasi extends CI_Controller {
 						);
 		$this->load->view('umkm/registrasi/cetak', $data, FALSE);
 	}
+	//list kota berdasarkan provinsi
+	public function kota($provinsi)
+	{
+		$curl = curl_init();
 
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://api.rajaongkir.com/starter/city?&province=".$provinsi,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"key: 6a26ff0bce7ba763143451d8e6a2a315"
+		),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$kota = json_decode($response, true);
+			if($kota['rajaongkir']['status']['code']=='200'){
+				foreach($kota['rajaongkir']['results'] as $kt){
+					echo "<option value='$kt[city_id]'>$kt[city_name]</option>";
+				}
+			}
+		}
+	}
 }
 
 /* End of file Registrasi.php */

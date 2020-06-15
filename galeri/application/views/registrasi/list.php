@@ -23,46 +23,49 @@
 
 						// form open
 						echo form_open(base_url('registrasi')); ?>
-						<table class="table table-hover">
-							  <thead>
-							    <tr>
-							      <th scope="col">Nama</th>
-							      <th><input type="text" name="nama_pelanggan" class="form-control" placeholder="Nama Lengkap" value="<?php echo set_value('nama_pelanggan') ?>" required></th>
-							    </tr>
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <td>Email</td>
-							      <td><input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo set_value('email') ?>" required=></td>
-							    </tr>
-							     <tr>
-							      <td>Password</td>
-							      <td><input type="password" name="password" class="form-control" placeholder="Password" value="<?php echo set_value('password') ?>" required></td>
-							    </tr>
-							    <tr>
-							      <td>Telepon</td>
-							      <td><input type="text" name="telepon_pelanggan" class="form-control" placeholder="Telepon" value="<?php echo set_value('telepon_pelanggan') ?>" required></td>
-							    </tr>
-							    <tr>
-							      <td>Alamat</td>
-							      <td> <textarea name="alamat_pelanggan" class="form-control" placeholder="Alamat">
-							      	<?php echo set_value('alamat_pelanggan') ?></textarea> </td>
-							    </tr>
-							    <tr>
-							      <td></td>
-							      <td> 
-							      		<button class="btn btn-outline-success" type="submit">
-							      			<i class="fa fa-save">		Submit</i>
-							      		</button>
-							      		<button class="btn btn-outline-primary" type="reset">
-							      			<i class="fa fa-times">		Reset</i>
-							      		</button>
-							      </td>
-							    </tr>
-							  </tbody>
-							</table>
-
-
+						<div class="container">
+							<div class="row">
+								<div class="col-md-2"><label>Nama</label></div>
+								<div class="col-md-10"><input type="text" name="nama_pelanggan" class="form-control" placeholder="Nama Lengkap" value="<?php echo set_value('nama_pelanggan') ?>" required></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2"><label>Email</label></div>
+								<div class="col-md-10"><input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo set_value('email') ?>" required=></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2"><label>Password</label></div>
+								<div class="col-md-10"><input type="password" name="password" class="form-control" placeholder="Password" value="<?php echo set_value('password') ?>" required></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2"><label>Telepon</label></div>
+								<div class="col-md-10"><input type="text" name="telepon_pelanggan" class="form-control" placeholder="Telepon" value="<?php echo set_value('telepon_pelanggan') ?>" required></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2"><label>Alamat</label></div>
+								<div class="col-md-10"> <textarea name="alamat_pelanggan" class="form-control" placeholder="Alamat"><?php echo set_value('alamat_pelanggan') ?></textarea> </div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-2"><label>S&K</label></div>
+								<div class="col-md-10">
+								<li class="text-justify">1.	Dengan menggunakan, berbelanja dan/atau mendaftarkan diri Anda di galeriajangambe.com, berarti Anda setuju untuk terikat dan patuh pada syarat dan ketentuan yang berlaku.</li>
+								<li class="text-justify">2.	Syarat dan ketentuan ini dapat berubah sewaktu-waktu.</li>
+								<li class="text-justify">3.	Syarat dan ketentuan ini kami buat untuk kepentingan bersama, untuk menjaga hak dan kewajiban masing-masing pihak, dan tidak dimaksudkan untuk merugikan salah satu pihak.</li>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-10">
+									<button class="btn btn-outline-success" type="submit">
+										<i class="fa fa-save">Submit</i>
+									</button>
+									<button class="btn btn-outline-primary" type="reset">
+										<i class="fa fa-times">Reset</i>
+									</button>
+								</div>
+							</div>
+						</div>
 						<?php echo form_close(); ?>
 					</div>
 

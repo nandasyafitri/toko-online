@@ -52,9 +52,31 @@
 							      <td>Telepon</td>
 							      <td><input type="text" name="telepon" class="form-control" placeholder="Telepon" value="<?php echo set_value('telepon') ?>" required></td>
 							    </tr>
+								<tr>
+									<td>Alamat Provinsi dan Kota</td>
+									<td>
+										<div class="form-group">  
+											<select class="form-control" id="provinsi" name="id_provinsi">
+												<option value=""> Pilih Provinsi</option>
+												<?php
+													if($provinsi['rajaongkir']['status']['code']=='200'){
+														foreach($provinsi['rajaongkir']['results'] as $pv){
+															echo "<option value='$pv[province_id]'>$pv[province]</option>";
+														}
+													}
+												?>                  
+											</select>
+										</div>
+										<div class="form-group">  
+											<select class="form-control" id="kota" name="id_kota">
+												<option value=""> Pilih Kota</option>            
+											</select>
+										</div>
+									</td>
+								</tr>
 							    <tr>
-							      <td>Alamat</td>
-							      <td> <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo set_value('alamat') ?></textarea> </td>
+							      <td>Alamat Lengkap</td>
+							      <td> <textarea name="alamat" class="form-control" placeholder="kecamatan, nama jalan, nama desa, no rumah dll.."><?php echo set_value('alamat') ?></textarea> </td>
 							    </tr>
 							    <tr>
 							      <td></td>
@@ -88,3 +110,16 @@
 			
 		</div>
 	</section>
+	<!-- script untuk menampilkan daftar kota berdasarkan provinsi -->
+	<script>
+  		document.getElementById('provinsi').addEventListener('change', function(){
+			fetch("<?= base_url('umkm/registrasi/kota/')?>"+this.value,{
+				method:'GET',
+			})
+			.then((response)=>response.text())
+			.then((data)=>{
+				document.getElementById('kota').innerHTML = data
+			})
+		})
+  	</script>
+	  <!-- end script untuk menampilkan daftar kota berdasarkan provinsi -->

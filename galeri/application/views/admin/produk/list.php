@@ -41,6 +41,7 @@
                       <th>Berat (Gram)</th>
                       <th>Foto</th>
                       <th>Deskripsi</th>
+                      <th>Warna</th>
                       <th>Stok</th>
                       <th>Status</th>
                       <th>Action</th>
@@ -60,6 +61,7 @@
                         class="img img-responsive img-thumbnail" width="60">
                       </td>
                       <td><?php echo $produk->deskripsi_produk ?></td>
+                      <td><?php echo $produk->warna ?></td>
                       <td><?php echo $produk->stok_produk ?></td>
                       <td><?php echo $produk->status_produk ?></td>
                       <td>

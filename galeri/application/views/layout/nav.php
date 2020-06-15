@@ -35,7 +35,7 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="<?php echo base_url('blog') ?>">Blog</a>
 							</li>
 
 							<li>
@@ -44,6 +44,10 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 
 							<li>
 								<a href="<?php echo base_url('kontak') ?>">Contact</a>
+							</li>
+
+							<li>
+								<a href="<?php echo base_url('umkm/registrasi') ?>">UMKM</a>
 							</li>
 						</ul>
 					</nav>

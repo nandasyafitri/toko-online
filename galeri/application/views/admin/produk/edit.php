@@ -107,6 +107,14 @@
 		</div>
 		<br>
 		<div class="from-group row ">
+			<label class="col-sm-2 col-form-label">Variasi Warna</label>
+		   <div class="col-sm-10">
+				<textarea class="form-control" name="warna" placeholder="variasi warna"><?php echo $produk->warna ?></textarea>
+				<small style="color:red">warna pisahkan dengan koma(,). Cth: merah,biru,kuning</small>
+			</div>
+		</div>
+		<br>
+		<div class="from-group row ">
 			<label class="col-sm-2 col-form-label">Stok Produk</label>
 		   <div class="col-sm-5">
 			<input type="number" name="stok_produk" class="form-control" placeholder="Stok Produk" value="<?php echo $produk->stok_produk ?>" required>

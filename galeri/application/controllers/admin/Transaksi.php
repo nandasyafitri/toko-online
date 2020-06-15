@@ -55,6 +55,38 @@ class Transaksi extends CI_Controller {
 		 			);
 		$this->load->view('admin/transaksi/cetak', $data, FALSE);
 	}
+	//status
+	public function status($kode_transaksi)
+	{
+		$header_transaksi 	=$this->header_transaksi_model->kode_transaksi($kode_transaksi);
+		$transaksi   		=$this->transaksi_model->kode_transaksi($kode_transaksi);
+
+		$data = array(	'title' 			=> 'Status Transaksi',
+						'header_transaksi'	=> $header_transaksi,
+						'transaksi'			=> $transaksi,
+						'isi'				=> 'admin/transaksi/status'
+		 			);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+	//Update Transaksi
+	public function update($kode_transaksi)
+	{
+		
+		//jika ada kode_transaksi ada
+		if ($kode_transaksi) {
+			$data = array(	'kode_transaksi' => $kode_transaksi,
+							'status_bayar'	=> $this->input->post('status'),
+							'resi'	=> $this->input->post('resi'),
+						 );
+			$this->transaksi_model->update($data);
+			$this->session->set_flashdata('sukses', 'Transaksi telah di Update');
+			redirect(base_url('admin/transaksi'),'refresh');
+		}else{
+			//jika tidak ada kode_transaksi
+			$this->session->set_flashdata('gagal','Gagal Update Transaksi');
+			redirect(base_url('admin/transaksi'),'refresh');
+		}
+	}
 
 }
 
