@@ -14,7 +14,7 @@
 							<img src="<?php echo base_url() ?>assets/template/images//banner-02.jpg" alt="IMG-BENNER">
 							<div class="block1-wrapbtn w-size2">
 								<!-- Button -->
-								<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								<a href="<?php echo base_url('produk/kategori/'.$kategori->slug_kategori) ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 									<?php echo $kategori->nama_kategori ?>
 								</a>
 							</div>

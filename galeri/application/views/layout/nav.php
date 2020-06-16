@@ -39,7 +39,7 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="<?php echo base_url('about') ?>">About</a>
 							</li>
 
 						</ul>

@@ -47,7 +47,8 @@ class Konfigurasi extends CI_Controller {
 							'facebook' 				=> $i->post('facebook'),
 							'instagram' 			=> $i->post('instagram'),
 							'deskripsi' 			=> $i->post('deskripsi'),
-							'rekening_pembayaran' 	=> $i->post('rekening_pembayaran'),
+							'about'					=> $i->post('about'),
+							'syarat_ketentuan'		=> $i->post('syarat_ketentuan')
 					);
 		 	$this->konfigurasi_model->edit($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Update');

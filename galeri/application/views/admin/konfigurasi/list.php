@@ -143,10 +143,19 @@
 
 
 		<div class="from-group row ">
-			<label class="col-sm-2 col-form-label">Rekening Pembayaran</label>
+			<label class="col-sm-2 col-form-label">About</label>
 		   <div class="col-sm-5">
-			<textarea name="rekening_pembayaran" class="form-control" placeholder="Rekening Pembayaran">
-				<?php echo $konfigurasi->rekening_pembayaran ?></textarea>
+			<textarea name="about" class="form-control" placeholder="Rekening Pembayaran">
+				<?php echo $konfigurasi->about ?></textarea>
+			</div>
+		</div>
+		<br>
+
+		<div class="from-group row ">
+			<label class="col-sm-2 col-form-label">Syarat dan Ketentuan</label>
+		   <div class="col-sm-5">
+			<textarea name="syarat_ketentuan" class="form-control" placeholder="Rekening Pembayaran">
+				<?php echo $konfigurasi->syarat_ketentuan ?></textarea>
 			</div>
 		</div>
 		<br>
