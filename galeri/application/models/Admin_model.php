@@ -24,8 +24,10 @@ class Admin_model extends CI_Model {
     }
     public function pengeluaran_produk()
     {
-        $this->db->select_sum('jumlah');
+        $this->db->select_sum('transaksi.jumlah');
         $this->db->from('transaksi');
+        $this->db->join('header_transaksi', 'transaksi.kode_transaksi = header_transaksi.kode_transaksi', 'left');
+        $this->db->where('header_transaksi.status_bayar', 'Dikirim');
         $query = $this->db->get();
 		return $query->row();
     }
