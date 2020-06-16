@@ -43,6 +43,27 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item ">
+        <a class="nav-link" href="<?php echo base_url('admin/blog') ?>">
+          <i class="fas fa-fw fa-check"></i>
+          <span>Blog</span></a>
+        </a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="<?php echo base_url('admin/umkm') ?>">
+          <i class="fas fa-fw fa-check"></i>
+          <span>Data UMKM</span></a>
+        </a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="<?php echo base_url('admin/laporan_penjualan') ?>">
+          <i class="fas fa-fw fa-check"></i>
+          <span>Laporan Penjualan</span></a>
+        </a>
+      </li>
+      
+      <li class="nav-item ">
         <a class="nav-link" href="<?php echo base_url('admin/transaksi') ?>">
           <i class="fas fa-fw fa-check"></i>
           <span>Data Transaksi</span></a>

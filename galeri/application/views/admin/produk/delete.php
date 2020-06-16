@@ -15,7 +15,7 @@
       <div class="modal-body">
       	<div class="text-danger">
       		<h4>Peringatan !</h4>
-      		 Yakin Inggin Menghapus Data Ini ? Data Yang Sudah di hapus Tidak Dapat di Kembalikan.
+      		 Yakin Ingin Menghapus Data Ini ? Data Yang Sudah di hapus Tidak Dapat di Kembalikan.
       	</div>
       </div>
       <div class="modal-footer">

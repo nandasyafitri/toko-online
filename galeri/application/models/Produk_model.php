@@ -12,11 +12,12 @@ class Produk_model extends CI_Model {
 	//listing all produk
 	public function listing()
 	{
-		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto');
+		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto, umkm.nama_umkm');
 		$this->db->from('produk');
 		//Join
 		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
 		$this->db->join('foto', 'foto.id_produk = produk.id_produk', 'left');
+		$this->db->join('umkm', 'umkm.id_umkm = produk.id_umkm', 'left');
 		// end join
 		$this->db->group_by('produk.id_produk');
 		$this->db->order_by('id_produk', 'desc');
@@ -149,8 +150,9 @@ class Produk_model extends CI_Model {
 	// Detail produk
 	public function detail($id_produk)
 	{
-		$this->db->select('*');
+		$this->db->select('produk.*, umkm.*');
 		$this->db->from('produk');
+		$this->db->join('umkm', 'produk.id_umkm = umkm.id_umkm', 'left');
 		$this->db->where('id_produk', $id_produk);
 		$this->db->order_by('id_produk', 'desc');
 		$query = $this->db->get();
@@ -184,7 +186,11 @@ class Produk_model extends CI_Model {
 	{
 		$this->db->insert('produk', $data);
 	}
-
+	// Tambah warna
+	public function tambah_warna($data)
+	{
+		$this->db->insert('warna_produk', $data);
+	}
 
 	 // Tambah foto
 	public function tambah_foto($data)
@@ -228,6 +234,22 @@ class Produk_model extends CI_Model {
 		$this->db->order_by('id_produk', 'desc');
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	//update stok produk
+	public function update_stok($data)
+	{
+		$this->db->where('id_produk', $data['id_produk']);
+		$this->db->update('produk', $data);
+	}
+	//get stok produk
+	public function getStok($id)
+	{
+		$this->db->select('stok_produk');
+		$this->db->from('produk');
+		$this->db->where('id_produk', $id);
+		$query = $this->db->get();
+		return $query->row();
 	}
 
 }

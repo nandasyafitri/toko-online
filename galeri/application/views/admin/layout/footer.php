@@ -4,8 +4,6 @@
 <script>
   initSample();
 </script>
-
-
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
@@ -68,6 +66,16 @@
 
   <!-- Page level custom scripts -->
   <script src="<?php echo base_url() ?>assets/admin/js/demo/datatables-demo.js"></script>
+  <!-- <script>
+    $(document).ready(function() {
+    $('#dataTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+  </script> -->
 </body>
 
 </html>

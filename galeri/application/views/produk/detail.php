@@ -1,4 +1,9 @@
 <!-- breadcrumb -->
+<?php if ($this->session->flashdata('gagal')) {
+						echo '<div class="alert alert-warning">';
+						echo $this->session->flashdata('gagal');
+						echo '</div>';
+					} ?>
 	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
 		<a href="<?php echo base_url() ?>" class="s-text16">
 			Home
@@ -63,6 +68,8 @@
 				//echo form_hidden('qty', 1 );
 				echo form_hidden('price', $produk->harga_produk);
 				echo form_hidden('name', $produk->nama_produk);
+				echo form_hidden('weight', $produk->berat_produk);
+				echo form_hidden('id_umkm', $produk->id_umkm);
 				// Elemet Redirect
 				echo form_hidden('redirect_page', str_replace('index.php/','', current_url())); 
 				?>
@@ -74,37 +81,26 @@
 				<p class="s-text8 p-t-10">
 					<?php echo $produk->deskripsi_produk ?>
 				</p>
+				<p class="s-text8 p-t-10">
+					Stok Produk : <?php echo $produk->stok_produk ?>
+				</p>
 
 				<!--  -->
 				<div class="p-t-33 p-b-60">
+
 					<div class="flex-m flex-w p-b-10">
-						<div class="s-text15 w-size15 t-center">
-							Size
-						</div>
-
-						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="size">
-								<option>Choose an option</option>
-								<option>Size S</option>
-								<option>Size M</option>
-								<option>Size L</option>
-								<option>Size XL</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="flex-m flex-w">
 						<div class="s-text15 w-size15 t-center">
 							Color
 						</div>
-
+						<?php $data = explode(",",$produk->warna)?>
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="color">
-								<option>Choose an option</option>
-								<option>Gray</option>
-								<option>Red</option>
-								<option>Black</option>
-								<option>Blue</option>
+							<select class="selection-2" name="warna">
+								<option disabled>Choose an option</option>								
+								<?php for($i=0;$i<count($data);$i++){?>
+									<option value="<?php echo $data[$i] ?>">
+											<?php echo $data[$i] ?>
+									</option>
+								<?php }?>
 							</select>
 						</div>
 					</div>
@@ -131,6 +127,13 @@
 							</div>
 						</div>
 					</div>
+					<h1 class="product-detail-name m-text25 p-b-13">Informasi Produk</h1>
+					<li class="s-text8 p-t-10">1.	Dengan melakukan transaksi pemesanan secara online galeriajangambe.com, Anda kami anggap telah mengerti informasi produk yang akan Anda beli.</li>
+					<li class="s-text8 p-t-10">2.	Produk yang tersedia di galeriajangambe.com sesuai dengan katalog online dan detail produk. Kami berusaha menyajikan data seakurat mungkin tanpa rekayasa agar Anda selaku pembeli tidak dirugikan.</li>
+					<li class="s-text8 p-t-10">3.	Informasi produk kami peroleh secara resmi dari katalog produk, maupun informasi pendukung lainnya dari pihak UMKM.</li>
+					<li class="s-text8 p-t-10">4.	Perbedaan warna dalam foto/gambar produk yang kami tampilkan di galeriajangambe.com bisa diakibatkan oleh faktor pencahayaan dan setting/resolusi monitor computer/HP dan karena itu tidak dapat dijadikan acuan.</li>
+					<li class="s-text8 p-t-10">5.	Harga produk dalam situs ini adalah benar pada saat dicantumkan.</li>
+					<li class="s-text8 p-t-10">6.	Harga yang tercantum adalah harga produk semata, tidak termasuk ongkos kirim. Ongkos kirim dihitung otomatis (berdasarkan harga dari jasa ekspedisi) sesuai dengan alamat pengiriman yang Anda berikan pada saat transaksi pemesanan.</li>
 				</div>
 				<?php
 				// Closing form
@@ -158,11 +161,13 @@
 					<div class="item-slick2 p-l-15 p-r-15">
 
 					<?php 
+					$warna = $this->input->post('warna');
 					// form untuk memproses belanjaan
 					echo form_open(base_url('belanja/add'));
 					// Elemen yang di bawa
 					echo form_hidden('id', $produk_related->id_produk);
 					echo form_hidden('qty', 1 );
+					echo form_hidden('warna',  $warna);
 					echo form_hidden('price', $produk_related->harga_produk);
 					echo form_hidden('name', $produk_related->nama_produk);
 					// Elemet Redirect

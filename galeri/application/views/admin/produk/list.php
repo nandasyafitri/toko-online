@@ -35,11 +35,13 @@
                     <tr>
                       <th>No</th>
                       <th>Kategori</th>
+                      <th>UMKM</th>
                       <th>Nama</th>
                       <th>Harga</th>
                       <th>Berat (Gram)</th>
                       <th>Foto</th>
                       <th>Deskripsi</th>
+                      <th>Warna</th>
                       <th>Stok</th>
                       <th>Status</th>
                       <th>Action</th>
@@ -50,6 +52,7 @@
                     <tr>
                       <td><?php echo $no?></td>
                       <td><?php echo $produk->nama_kategori ?></td>
+                      <td><?php echo $produk->nama_umkm ?></td>
                       <td><?php echo $produk->nama_produk ?></td>
                       <td><?php echo number_format($produk->harga_produk,'0',',','.') ?></td>
                       <td><?php echo $produk->berat_produk ?></td>
@@ -58,6 +61,7 @@
                         class="img img-responsive img-thumbnail" width="60">
                       </td>
                       <td><?php echo $produk->deskripsi_produk ?></td>
+                      <td><?php echo $produk->warna ?></td>
                       <td><?php echo $produk->stok_produk ?></td>
                       <td><?php echo $produk->status_produk ?></td>
                       <td>

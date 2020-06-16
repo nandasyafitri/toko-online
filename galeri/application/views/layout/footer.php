@@ -125,19 +125,19 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 <!--===============================================================================================-->
 	<script type="text/javascript" src="<?php echo base_url() ?>assets/template/vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
+		// $('.block2-btn-addcart').each(function(){
+		// 	var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+		// 	$(this).on('click', function(){
+		// 		swal(nameProduct, "is added to cart !", "success");
+		// 	});
+		// });
 
-		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
-		});
+		// $('.block2-btn-addwishlist').each(function(){
+		// 	var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+		// 	$(this).on('click', function(){
+		// 		swal(nameProduct, "is added to wishlist !", "success");
+		// 	});
+		// });
 	</script>
 
 	<!--===============================================================================================-->
@@ -170,6 +170,100 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 
 <!--===============================================================================================-->
 	<script src="<?php echo base_url() ?>assets/template/js/main.js"></script>
+	<!-- script api raja ongkir -->
+	<script>
+		document.getElementById('provinsi_tujuan').addEventListener('change', function(){
+			fetch("<?= base_url('belanja/kota/')?>"+this.value,{
+				method:'GET',
+			})
+			.then((response)=>response.text())
+			.then((data)=>{
+				document.getElementById('kota_tujuan').innerHTML = data
+			})
+		})
+		document.getElementById('kurir-pilihan').addEventListener('change', function(){
+			var jumlah_transaksi = parseFloat($('#jumlah_transaksi').val())
+			var ongkir = parseFloat(this.value)
+			var total_bayar = parseFloat(jumlah_transaksi + ongkir)
+			$('#total_bayar').text((total_bayar).toLocaleString('id', { style: 'currency', currency: 'IDR' }))
+			$('#total_transaksi').val(total_bayar)
+		})
+		function getservice()
+		{
+			//ambil data dari belanja/checkout.php
+			var origin			= $('#kota_asal').val()
+			var destination 	= $('#kota_tujuan').find(":selected").val()
+			var weight 			= $('#berat').val()
+			var courier 		= $("#kurir").find(":selected").val()
+			//pakai ajax untuk request data daftar ekspedisi yang tersedia dan ongkirnya
+			$.ajax({
+				//request ke controller belanja/getservice
+                url: '<?= base_url() ?>belanja/getservice',
+				//method POST
+                type: 'POST',
+				//return data atau respond data dalam json
+				dataType: 'json',
+                cache: false,
+				beforeSend: function() {
+					$('.service').append("<div class='modal'></div>")
+  					$('.service').addClass("loading")
+				},
+				//data yang dikirim ke controller
+                data: {
+					origin		: origin,
+					destination : destination,
+					weight		: weight,
+					courier 	: courier
+				},
+				//jika request berhasil
+				success: function(response) {
+					$('.service').removeClass("loading")
+					//kosongkan elemen di kelas service
+					$(".service").empty()
+					var data = response
+					var status = data.rajaongkir.status.code
+					//status 200 artinya Response sukses
+					if(status == 200)
+					{
+						//menampilkan data yg direturn
+						var baris =''
+						for(var i = 0; i< data.rajaongkir.results[0].costs.length ; i++){
+							baris += '<td>'
+							baris += '<div class="card">'
+							//menampilkan nama ekspedisi
+							baris += '<h5 class="card-title">'+data.rajaongkir.results[0].costs[i].service+'</h5>'
+							baris += '<div class="card-body">'
+							//menampilkan deskripsi ekspedisi
+							baris += '<p class="card-text">'+data.rajaongkir.results[0].costs[i].description+'</p>'
+							//menampilkan ongkir masing-masing ekspedisi berdasarkan kota-asal, kota-tujuan, berat barang (dalam gram)
+							baris += '<p class="card-text"> '+(data.rajaongkir.results[0].costs[i].cost[0].value).toLocaleString('id', { style: 'currency', currency: 'IDR' })+'</p>'
+							//menampilkan estimasi lama pengiriman
+							baris += '<p class="card-text">Estimasi pengiriman : '+data.rajaongkir.results[0].costs[i].cost[0].etd+' hari</p>'
+							baris += '</div>'
+							baris += '</div>'
+							baris += '</td>'
+						}
+						//append element
+						$(".service").append(baris);
+						var row = '<option value=""> Pilih Servis</option>'
+						for(var i = 0; i< data.rajaongkir.results[0].costs.length ; i++){
+							row += '<option value="'+(data.rajaongkir.results[0].costs[i].cost[0].value)+'">'+data.rajaongkir.results[0].costs[i].service+' / '+(data.rajaongkir.results[0].costs[i].cost[0].value).toLocaleString('id', { style: 'currency', currency: 'IDR' })+'</option>'
+						}
+						document.getElementById('kurir-pilihan').innerHTML = row
 
+					}
+					//jika Response gagal
+					else{
+						$(".service").empty()
+						$(".service").append('<td colspan="6" style="text-align: center;">Tidak ada data</td>');
+					}
+                },
+                error: function(data) {
+                    alert("Gagal mengambil data");
+                }
+			})
+		}
+	</script>
+	<!-- end script api raja ongkir -->
 </body>
 </html>

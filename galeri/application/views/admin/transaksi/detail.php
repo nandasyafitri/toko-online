@@ -91,6 +91,7 @@
 					<th>NO</th>
 					<th>KODE PRODUK</th>
 					<th>NAMA PRODUK</th>
+					<th>WARNA PRODUK</th>
 					<th>JUMLAH PRODUK</th>
 					<th>HARGA</th>
 					<th>SUB TOTAL</th>
@@ -102,6 +103,7 @@
 					<td><?php echo $i ?></td>
 					<td><?php echo $transaksi->kode_produk ?></td>
 					<td><?php echo $transaksi->nama_produk ?></td>
+					<td><?php echo $transaksi->warna ?></td>
 					<td><?php echo number_format($transaksi->jumlah) ?></td>
 					<td><?php echo number_format($transaksi->harga) ?></td>
 					<td><?php echo number_format($transaksi->total_harga) ?></td>

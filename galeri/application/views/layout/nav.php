@@ -35,13 +35,23 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="<?php echo base_url('blog') ?>">Blog</a>
 							</li>
 
 							<li>
 								<a href="<?php echo base_url('about') ?>">About</a>
 							</li>
 
+<<<<<<< HEAD
+=======
+							<li>
+								<a href="<?php echo base_url('kontak') ?>">Contact</a>
+							</li>
+
+							<li>
+								<a href="<?php echo base_url('umkm/registrasi') ?>">UMKM</a>
+							</li>
+>>>>>>> af447944808f7c47f7902250b1f4126bbc980cba
 						</ul>
 					</nav>
 				</div>

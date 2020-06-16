@@ -9,6 +9,7 @@ class Produk extends CI_Controller {
 		parent::__construct();
 		$this->load->model('produk_model');
 		$this->load->model('kategori_model');
+		$this->load->model('umkm_model');
 		//proteksi halaman
 		$this->simple_login->cek_login();
 	}
@@ -98,7 +99,8 @@ class Produk extends CI_Controller {
 	public function tambah()
 	{
 		//ambil data kategori
-		$kategori = $this->kategori_model->listing();	
+		$kategori 	= $this->kategori_model->listing();	
+		$umkm 		= $this->umkm_model->listing();	
 
 		//Validasi Input
 		$valid = $this->form_validation;
@@ -123,10 +125,11 @@ class Produk extends CI_Controller {
 				
 			// End Validasi
 
-		$data  = array('title' => 'Tambah Produk',
-						'kategori' => $kategori,
-						'error'  => $this->upload->display_errors(),
-					    'isi' => 'admin/produk/tambah');
+		$data  = array('title' 		=> 'Tambah Produk',
+						'kategori' 	=> $kategori,
+						'umkm'		=> $umkm,
+						'error'  	=> $this->upload->display_errors(),
+					    'isi' 		=> 'admin/produk/tambah');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 
 		//masuk database
@@ -148,8 +151,7 @@ class Produk extends CI_Controller {
 
 			$this->image_lib->resize();
 		 	// end create thumbnail
-
-		 	$i = $this->input;
+			$i = $this->input;
 		 	$slug_produk = url_title($this->input->post('nama_produk').'-'.$this->input->post('kode_produk'), 'dash', TRUE);
 		 	$data = array('id_kategori' 		=> $i->post('id_kategori'),
 						  'nama_produk' 		=> $i->post('nama_produk'),
@@ -160,7 +162,9 @@ class Produk extends CI_Controller {
 						  'foto_produk' 		=> $upload_foto['upload_data']['file_name'],
 						  'deskripsi_produk' 	=> $i->post('deskripsi_produk'),
 						  'stok_produk' 		=> $i->post('stok_produk'),
-						  'status_produk' 		=> $i->post('status_produk')
+						  'status_produk' 		=> $i->post('status_produk'),
+						  'id_umkm'				=> $i->post('id_umkm'),
+						  'warna'				=> $i->post('warna')
 					);
 		 	$this->produk_model->tambah($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Tambah');
@@ -169,6 +173,7 @@ class Produk extends CI_Controller {
 		 // end masuk database
 		 $data  = array('title' => 'Tambah Produk',
 						'kategori' => $kategori,
+						'umkm'		=> $umkm,
 					    'isi' => 'admin/produk/tambah');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
@@ -180,6 +185,7 @@ class Produk extends CI_Controller {
 		$produk 	= $this->produk_model->detail($id_produk);
 		//ambil data kategori
 		$kategori = $this->kategori_model->listing();
+		$umkm = $this->umkm_model->listing();
 
 		//Validasi Input
 		$valid = $this->form_validation;
@@ -208,6 +214,7 @@ class Produk extends CI_Controller {
 
 		$data  = array('title' => 'Edit Produk : '.$produk->nama_produk,
 						'kategori' => $kategori,
+						'umkm' => $umkm,
 						'produk' => $produk,
 						'error'  => $this->upload->display_errors(),
 					    'isi' => 'admin/produk/edit');
@@ -245,7 +252,9 @@ class Produk extends CI_Controller {
 						  'foto_produk' 		=> $upload_foto['upload_data']['file_name'],
 						  'deskripsi_produk' 	=> $i->post('deskripsi_produk'),
 						  'stok_produk' 		=> $i->post('stok_produk'),
-						  'status_produk' 		=> $i->post('status_produk')
+						  'status_produk' 		=> $i->post('status_produk'),
+						  'id_umkm'				=> $i->post('id_umkm'),
+						  'warna'				=> $i->post('warna')
 					);
 		 	$this->produk_model->edit($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Edit');
@@ -265,7 +274,9 @@ class Produk extends CI_Controller {
 						  //'foto_produk' 		=> $upload_foto['upload_data']['file_name'],
 						  'deskripsi_produk' 	=> $i->post('deskripsi_produk'),
 						  'stok_produk' 		=> $i->post('stok_produk'),
-						  'status_produk' 		=> $i->post('status_produk')
+						  'status_produk' 		=> $i->post('status_produk'),
+						  'id_umkm'				=> $i->post('id_umkm'),
+						  'warna'				=> $i->post('warna')
 					);
 		 	$this->produk_model->edit($data);
 		 	$this->session->set_flashdata('sukses','Data Telah di Edit');
@@ -276,6 +287,7 @@ class Produk extends CI_Controller {
 		 // end masuk database
 		 $data  = array('title' => 'Edit Produk : '.$produk->nama_produk,
 						'kategori' => $kategori,
+						'umkm'		=> $umkm,
 						'produk' =>$produk,
 					    'isi' => 'admin/produk/edit');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
