@@ -52,7 +52,6 @@
                         <select class="form-control" name="status" id="status">
                             <option value="">PILIH</option>
                             <option value="Dikirim">Dikirim</option>
-                            <option value="Diterima">Diterima</option>
                             <option value="Batal">Batal</option>
                         </select>
                     </td>

@@ -15,6 +15,8 @@ class Laporan_penjualan_model extends CI_Model {
 		$this->db->from('transaksi');
 		$this->db->join('produk','transaksi.id_produk = produk.id_produk', 'left');
 		$this->db->join('umkm', 'produk.id_umkm=umkm.id_umkm', 'left');
+		$this->db->join('header_transaksi', 'header_transaksi.kode_transaksi=transaksi.kode_transaksi', 'left');
+		$this->db->where('header_transaksi.status_bayar', 'Dikirim');
 		$this->db->order_by('transaksi.tanggal_transaksi', 'desc');
 		$query = $this->db->get();
 		return $query->result();
