@@ -22,9 +22,6 @@
 					} ?>
 
 					<table class="table-shopping-cart">
-					<?php echo var_dump($this->cart->contents())?>
-					<?php $s = $this->produk_model->getStok(11)->stok_produk?>
-					<?php echo $s?>
 						<tr class="table-head">
 							<th class="column-1">GAMBAR</th>
 							<th class="column-2">PRODUK</th>
@@ -52,8 +49,8 @@
 								</div>
 							</td>
 							<input type="hidden" name="id_produk" value="<?php echo $id_produk ?>">
-							<td class="column-2"><?php echo $keranjang['name'] .$keranjang['qty'] ?></td>
-							<td class="column-2"><?php echo $keranjang['options'].$keranjang['id'] ?></td>
+							<td class="column-2"><?php echo $keranjang['name']?></td>
+							<td class="column-2"><?php echo $keranjang['options'] ?></td>
 							<td class="column-3">Rp. <?php echo number_format($keranjang['price'],'0',',','.') ?></td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
