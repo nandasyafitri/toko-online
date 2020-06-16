@@ -20,4 +20,13 @@ class Laporan_penjualan extends CI_Controller {
 					    'isi' => 'admin/laporan/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
+	//Cetak
+	public function cetak()
+	{	
+		$data = $this->laporan_penjualan_model->listing();
+		$data = array(	'title'	=> 'Cetak Laporan Penjualan',
+						'data'	=> $data			
+						);
+		$this->load->view('admin/laporan/cetak', $data, FALSE);
+	}
 }
