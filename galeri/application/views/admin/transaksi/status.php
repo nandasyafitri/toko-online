@@ -60,7 +60,7 @@
                 <tr id="resi" style="display:none">
 					<td>INPUT RESI</td>
 					<td>
-                        <input class="form-control" name="resi" placeholder="Masukkan Resi" value="">
+                        <input class="form-control" name="resi" placeholder="Masukkan Resi" value="<?php echo $header_transaksi->resi?>">
                     </td>
 				</tr>
                 <tr>

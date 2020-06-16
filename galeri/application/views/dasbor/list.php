@@ -30,6 +30,7 @@
 									<th>JUMLAH TOTAL</th>
 									<th>JUMLAH ITEM</th>
 									<th>STATUS BAYAR</th>
+									<th>RESI</th>
 									<th>ACTION</th>
 								</tr>
 							</thead>
@@ -42,6 +43,7 @@
 									<td><?php echo number_format($header_transaksi->jumlah_transaksi) ?></td>
 									<td><?php echo $header_transaksi->total_item ?></td>
 									<td><?php echo $header_transaksi->status_bayar ?></td>
+									<td><?php echo $header_transaksi->resi ?></td>
 									<td>
 										<div class="btn-group">
 										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-success btn-sm">

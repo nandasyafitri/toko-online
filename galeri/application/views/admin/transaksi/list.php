@@ -27,6 +27,7 @@
 						<th>TANGGAL</th>
 						<th>JUMLAH TOTAL</th>
 						<th>JUMLAH ITEM</th>
+						<th>RESI</th>
 						<th>STATUS BAYAR</th>
 						<th>ACTION</th>
 					</tr>
@@ -47,6 +48,7 @@
 						<td><?php echo date('d-m-Y',strtotime($header_transaksi->tanggal_transaksi)) ?></td>
 						<td><?php echo number_format($header_transaksi->jumlah_transaksi) ?></td>
 						<td><?php echo $header_transaksi->total_item ?></td>
+						<td><?php echo $header_transaksi->resi ?></td>
 						<td><?php echo $header_transaksi->status_bayar ?></td>
 						<td>
 							<div class="btn-group">

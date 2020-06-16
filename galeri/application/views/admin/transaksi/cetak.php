@@ -115,6 +115,10 @@
 					<td>PEMBAYARAN KE REKENING</td>
 					<td> : <?php echo $header_transaksi->bank ?> No. Rekening <?php echo $header_transaksi->nomor_rekening ?> a.n <?php echo $header_transaksi->nama_pemilik ?></td>
 				</tr>
+				<tr>
+					<td>RESI</td>
+					<td> : <?php echo $header_transaksi->resi ?></td>
+				</tr>
 			</tbody>
 		</table>
 

@@ -45,6 +45,10 @@
 									<td>STATUS</td>
 									<td> : <?php echo $header_transaksi->status_bayar ?></td>
 								</tr>
+								<tr>
+									<td>RESI</td>
+									<td> : <?php echo $header_transaksi->resi ?></td>
+								</tr>
 							</tbody>
 						</table>
 
