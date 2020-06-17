@@ -1,4 +1,5 @@
 <!-- Title Page -->
+<div id="halaman">
 	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" 
 		style="background-image: url(<?php echo base_url() ?>assets/template/images/heading-pages-02.jpg);">
 		<h2 class="l-text2 t-center">
@@ -105,10 +106,10 @@
 						</div>
 
 						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+							<input class="s-text7 size6 p-l-23 p-r-50" type="text" id="search-product" name="search-product" placeholder="Search Products..." value="">
 
-							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" onclick="search()" >
+								<i class="fs-12 fa fa-search" aria-hidden="true">Search</i>
 							</button>
 						</div>
 					</div>
@@ -146,7 +147,7 @@
 					</div>
 
 					<!-- Product -->
-					<div class="row" id="produk">
+					<div class="row produk" id="produk" >
 						<?php foreach ($produk as $produk) { ?>
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<?php 
@@ -194,68 +195,14 @@
 							// Closing form
 							 echo form_close(); ?>
 						</div>
-					<?php } ?>
+						<?php } ?>
+						<!-- Pagination -->
+						
 					</div>
 
-					<!-- Pagination -->
-					<div class="pagination flex-m flex-w p-t-26 text-center">
-						<?php echo $pagin; ?>
-					</div>
+					
 				</div>
 			</div>
 		</div>
 	</section>
-	
-<script>
-// base url
-function base_url() {
-    var pathparts = location.pathname.split('/');
-    if (location.host == 'localhost') {
-        var url = location.origin+'/'+pathparts[1].trim('/')+'/'; // http://localhost/myproject/
-    }else{
-        var url = location.origin; // http://stackoverflow.com
-    }
-    return url;
-}
-function filterProducts() {
-    var lower_price = $('#value-lower').text()
-	var upper_price = $('#value-upper').text()
-	$("#produk").remove()
-    $.ajax({
-		type: 'POST',
-   		dataType: "json",
-        url: '<?php echo base_url(); ?>produk/filter_by_price',
-        data:{
-			lower_price:lower_price, 
-			upper_price:upper_price
-		},
-		// beforeSend: function () {
-		// 	alert(lower_price+" dan "+upper_price)
-        // },
-        success: function (data) {
-			console.log(data)
-			var baris = ''
-			var base_url = '<?php echo base_url();?>'
-			console.log(base_url)			
-			if (data.length != 0) {
-                  $.each(data, function(index, obj) {
-					//   console.log(obj.nama_produk)					
-					baris += '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'
-					baris += '<form action="http://localhost/toko-online/galeri/belanja/add" method="post" accept-charset="utf-8">'
-					baris += '<input type="hidden" name="id" value="'+obj.id_produk+'"/>'
-					baris += '<input type="hidden" name="qty" value="1"/>'
-					baris += '<input type="hidden" name="price" value="'+obj.harga_produk+'"/>'
-					baris += '<input type="hidden" name="name" value="'+obj.nama_produk+'"/>'
-					baris += '<input type="hidden" name="redirect_page" value="http://localhost/toko-online/galeri/produk">'
-                  });
-            } else {
-				   console.log('tidak ada data')
-			}
-			$("#produk").append(baris);
-        },
-		error: function(XMLHttpRequest, textStatus, errorThrown) { 
-        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-    	} 
-    });
-}
-</script>
+</div>

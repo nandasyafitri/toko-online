@@ -23,7 +23,6 @@ class Produk extends CI_Controller {
 		
 		//paginasi Start
 		$this->load->library('pagination');
-		$this->load->library('pagination');
 		
 		$config['base_url'] 		= base_url().'produk/index/';
 		$config['total_rows'] 		= $total->total;
@@ -152,11 +151,23 @@ class Produk extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
-	public function filter_by_price()
-	{	
-		$lower_price = $this->input->post('lower_price');
-		$upper_price = $this->input->post('upper_price');
-		echo json_encode($this->produk_model->filter_by_price($lower_price, $upper_price));
+	
+	public function search()
+	{
+		$site 				= $this->konfigurasi_model->listing();
+		$listing_kategori	= $this->produk_model->listing_kategori();
+		$cari 				= $this->input->post('cari');
+		$produk				= $this->produk_model->search($cari);
+
+		$data = array(
+						'title' 			=> 'Produk '.$site->namaweb, 
+						'site'				=> $site,
+						'listing_kategori'	=> $listing_kategori,
+						'produk'			=> $produk,
+						'isi'				=> 'produk/list'
+		);
+		
+		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
 }

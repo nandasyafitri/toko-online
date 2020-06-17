@@ -190,7 +190,7 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 		})
 		function getservice()
 		{
-			//ambil data dari belanja/checkout.php
+			//ambil data dari belanja/checkout
 			var origin			= $('#kota_asal').val()
 			var destination 	= $('#kota_tujuan').find(":selected").val()
 			var weight 			= $('#berat').val()
@@ -265,5 +265,41 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 		}
 	</script>
 	<!-- end script api raja ongkir -->
+	<!-- script for search product goes down below -->
+	<script>
+		function search()
+		{
+			var cari = $('#search-product').val()
+			if( cari != '')
+			{
+				$.ajax({
+					//request ke controller 
+					url: '<?= base_url() ?>produk/search',
+					//method POST
+					type: 'POST',
+					//return data atau respond data dalam json
+					
+					cache: false,
+					//data yang dikirim ke controller
+					data: {
+						cari : cari
+					},
+					//jika request berhasil
+					success: function(response) {
+						$('#halaman').empty()
+						$('#halaman').html(response)
+					},
+					//jika request gagal					
+					error: function(xhr, status, error) {
+						alert("Gagal mengambil data")
+						console.log(xhr);
+						console.log(status);
+						console.log(error);
+					}
+				})	
+			}
+		}
+	</script>
+	<!-- end script for search product -->
 </body>
 </html>
