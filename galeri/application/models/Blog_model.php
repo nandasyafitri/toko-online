@@ -17,6 +17,17 @@ class Blog_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
     }
+
+    //listing all blog dashboard
+	public function home()
+	{
+		$this->db->select('*');
+		$this->db->from('blog');
+		$this->db->order_by('tanggal_upload', 'desc');
+		$this->db->limit(3);
+		$query = $this->db->get();
+		return $query->result();
+    }
     	// Tambah
 	public function tambah($data)
 	{
@@ -57,6 +68,7 @@ class Blog_model extends CI_Model {
 	{
 		$this->db->select('*');
 		$this->db->from('blog');
+		$this->db->order_by('tanggal_upload', 'desc');
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
 		return $query->result();

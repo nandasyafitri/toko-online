@@ -50,9 +50,7 @@
                         <img src="<?php echo base_url('assets/upload/image/thumbs/'.$blog->gambar) ?>" 
                         class="img img-responsive img-thumbnail" width="60">
                       </td>
-                      <td>
-
-                        <a href="<?php echo base_url('admin/blog/foto/'.$blog->id_blog) ?>" class="btn btn-success btn-sm"> <i class="fa fa-image"></i> Foto () </a> 
+                      <td> 
 
                       	 <a href="<?php echo base_url('admin/blog/edit/'.$blog->id_blog) ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> Edit </a> 
 

@@ -25,10 +25,10 @@
 						<th>PELANGGAN</th>
 						<th>KODE TRANSAKSI</th>
 						<th>TANGGAL</th>
-						<th>JUMLAH TOTAL</th>
+						<th>JUMLAH TOTAL (Total Belanjaan + Ongkos Kirim)</th>
 						<th>JUMLAH ITEM</th>
 						<th>RESI</th>
-						<th>STATUS BAYAR</th>
+						<th>STATUS</th>
 						<th>ACTION</th>
 					</tr>
 				</thead>

@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('produk_model');
 		$this->load->model('kategori_model');
+		$this->load->model('blog_model');
 		$this->load->model('konfigurasi_model');
 	}
 
@@ -17,7 +18,8 @@ class Home extends CI_Controller {
 	{
 		$site 		= $this->konfigurasi_model->listing();
 		$kategori 	= $this->konfigurasi_model->nav_produk();
-		$produk 	= $this->produk_model->home();
+		$produk 	= $this->produk_model->home1();
+		$blog 		= $this->blog_model->home();
 
 
 		$data = array(	'title' 	=> $site->namaweb.' | '.$site->tagline,
@@ -26,6 +28,7 @@ class Home extends CI_Controller {
 						'site'		=> $site,
 						'kategori'	=> $kategori,
 						'produk'	=> $produk,
+						'blog'		=> $blog,
 						'isi'  		=> 'home/list');
 
 		$this->load->view('layout/wrapper', $data, FALSE);

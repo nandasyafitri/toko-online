@@ -10,10 +10,14 @@
 			
 					</div>
 				</div>
-		
-
+						
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-						<div class="alert alert-success">
+					<?php if($this->session->flashdata('sukses')) {
+						echo '<div class="alert alert-success">';
+						echo $this->session->flashdata('sukses');
+						echo '</div>';
+					} ?>
+						<div class="alert alert-info">
 							<h1>Selamat Datang <i><strong><?php echo $this->session->userdata('nama_pelanggan'); ?></strong> </i> </h1>
 						</div>
 						<?php 
@@ -23,13 +27,13 @@
 
 						<table class="table table-bordered" width="100%">
 							<thead>
-								<tr class="bg-success">
+								<tr class="bg-info">
 									<th>NO</th>
 									<th>KODE TRANSAKSI</th>
 									<th>TANGGAL</th>
 									<th>JUMLAH TOTAL</th>
 									<th>JUMLAH ITEM</th>
-									<th>STATUS BAYAR</th>
+									<th>STATUS</th>
 									<th>RESI</th>
 									<th>ACTION</th>
 								</tr>
@@ -45,10 +49,20 @@
 									<td><?php echo $header_transaksi->status_bayar ?></td>
 									<td><?php echo $header_transaksi->resi ?></td>
 									<td>
+										
 										<div class="btn-group">
-										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-success btn-sm">
+										<?php if($header_transaksi->status_bayar == "Dikirim") { ?>
+										<a href="<?php echo base_url('dasbor/konfirmasi_diterima/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-danger btn-sm">
+										<i class="file-alt"></i>	 Diterima </a>
+									<?php } ?>
+									</div>
+								
+
+									<div class="btn-group" >
+										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-outline-primary btn-sm">
 											<i class="file-alt"></i>	 Detail </a>
-										<a href="<?php echo base_url('dasbor/konfirmasi/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-info btn-sm">
+
+										<a href="<?php echo base_url('dasbor/konfirmasi/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-upload"></i>	 Konfirmasi Pembayaran </a>
 											</div>
 									</td>
@@ -56,6 +70,9 @@
 								<?php $i++; } ?>
 							</tbody>
 						</table>
+
+						<p class="text-sm-left">
+					Note : lakukan konfirmasi "Diterima"  apabila produk sudah diterima.
 
 						<?php
 						//kalau tidak ada tampilkan notifikasi

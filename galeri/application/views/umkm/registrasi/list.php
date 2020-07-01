@@ -15,6 +15,10 @@
 						echo '</div>';
 					} ?>
 					<div class="col-md-12">
+
+						<p class="alert alert-success">Sebelum mendaftar terlebih dahulu membaca Syarat dan Ketentuan ? Silahkan <a href="<?php echo base_url('sk') ?>" class="btn btn-info btn-sm">klik di sini </a></p>
+
+						
 						<?php 
 						// display error
 						echo validation_errors('<div class="alert alert-warning">','</div>');
@@ -93,6 +97,8 @@
 							</table>
 						<?php echo form_close(); ?>
 					</div>
+
+
 
 				</div>
 			</div>

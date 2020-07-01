@@ -148,13 +148,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-6 col-md-9 col-lg-9 p-b-50">
-					<h1>Pembayaran</h1>
-					<li class="text-justify">1.	Mata uang yang dipakai untuk pembayaran adalah Rupiah (IDR).</li>
-					<li class="text-justify">2.	Pembayaran bisa melalui ATM, internet banking, mobile banking, setoran tunai, maupun transfer antarbank ke rekening bank yang telah kami informasikan kepada Anda.</li>
-					<li class="text-justify">3.	Pembayaran dianggap lunas jika uang telah kami terima sesuai dengan jumlah yang harus dibayarkan. Segera lakukan konfirmasi kepada kami melalui fitur Konfirmasi Pembayaran yang tersedia di galeriajangambe.com.</li>
-					<li class="text-justify">4.	Segala biaya yang timbul dari transaksi pembayaran (seperti fee pihak ketiga, biaya transfer, biaya kliring, switching, dan sebagainya) ditanggung oleh pembeli.</li>
-					<li class="text-justify">5.	Keterlambatan proses transfer antarbank bukan tanggung jawab kami.</li>
-					<li class="text-justify">6.	Kelalaian penulisan rekening dan informasi lainnya atau kelalaian pihak bank pada saat Anda melakukan pembayaran bukan tanggung jawab kami.</li>
+					
 				</div>
 			</div>
 

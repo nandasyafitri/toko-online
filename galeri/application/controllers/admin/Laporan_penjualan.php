@@ -7,6 +7,7 @@ class Laporan_penjualan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('laporan_penjualan_model');
+		$this->load->model('konfigurasi_model');
 		//proteksi halaman
 		$this->simple_login->cek_login();
 	}
@@ -24,7 +25,9 @@ class Laporan_penjualan extends CI_Controller {
 	public function cetak()
 	{	
 		$data = $this->laporan_penjualan_model->listing();
-		$data = array(	'title'	=> 'Cetak Laporan Penjualan',
+		$site =$this->konfigurasi_model->listing();
+		$data = array(	'title'	=> 'Laporan Penjualan',
+						'site'	=> $site,
 						'data'	=> $data			
 						);
 		$this->load->view('admin/laporan/cetak', $data, FALSE);

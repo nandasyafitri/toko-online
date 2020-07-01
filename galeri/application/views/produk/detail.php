@@ -127,21 +127,52 @@
 							</div>
 						</div>
 					</div>
-					<h1 class="product-detail-name m-text25 p-b-13">Informasi Produk</h1>
-					<li class="s-text8 p-t-10">1.	Dengan melakukan transaksi pemesanan secara online galeriajangambe.com, Anda kami anggap telah mengerti informasi produk yang akan Anda beli.</li>
-					<li class="s-text8 p-t-10">2.	Produk yang tersedia di galeriajangambe.com sesuai dengan katalog online dan detail produk. Kami berusaha menyajikan data seakurat mungkin tanpa rekayasa agar Anda selaku pembeli tidak dirugikan.</li>
-					<li class="s-text8 p-t-10">3.	Informasi produk kami peroleh secara resmi dari katalog produk, maupun informasi pendukung lainnya dari pihak UMKM.</li>
-					<li class="s-text8 p-t-10">4.	Perbedaan warna dalam foto/gambar produk yang kami tampilkan di galeriajangambe.com bisa diakibatkan oleh faktor pencahayaan dan setting/resolusi monitor computer/HP dan karena itu tidak dapat dijadikan acuan.</li>
-					<li class="s-text8 p-t-10">5.	Harga produk dalam situs ini adalah benar pada saat dicantumkan.</li>
-					<li class="s-text8 p-t-10">6.	Harga yang tercantum adalah harga produk semata, tidak termasuk ongkos kirim. Ongkos kirim dihitung otomatis (berdasarkan harga dari jasa ekspedisi) sesuai dengan alamat pengiriman yang Anda berikan pada saat transaksi pemesanan.</li>
 				</div>
 				<?php
 				// Closing form
 				 echo form_close(); ?>
 				
+			<!--  -->
+
+				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
+					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
+						Reviews (0)
+						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
+						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
+					</h5>
+
+					<div class="dropdown-content dis-none p-t-15 p-b-23">
+						<?php 	 
+						echo form_open(base_url('produk/tambah_review')); ?>
+
+					 <input type="hidden" name="id_pelanggan" value="<?php  echo $this->session->userdata('id_pelanggan') ?>">
+					 <input type="hidden" name="id_produk" value="<?php echo $produk->id_produk ?>">	
+
+						<tr>
+							 <td> <textarea name="isi" class="form-control" placeholder="">
+							  </textarea> </td>
+						 </tr>
+						 <td> 
+				      		<button class="btn btn-outline-success" type="submit">
+				      			<i class="fa fa-save">Post</i>
+				      		</button>
+						</td>
+						<?php
+						echo form_close(); ?>
+						 <hr>
+						 <?php 	
+						 	foreach ($review as  $review) { ?>
+						<tr>
+							 <td><<?php echo $review->nama_pelanggan ?></td> <br><br>
+							 <td><?php echo $review->isi ?></td>
+						 </tr>
+						<?php } ?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
 
 
 	<!-- Relate Product -->
@@ -149,7 +180,7 @@
 		<div class="container">
 			<div class="sec-title p-b-60">
 				<h3 class="m-text5 t-center">
-					Related Products
+					Produk Terkait
 				</h3>
 			</div>
 
@@ -176,7 +207,7 @@
 
 						<!-- Block2 -->
 						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+							<div class="block2-img wrap-pic-w of-hidden pos-relative ">
 								<img src="<?php echo base_url('assets/upload/image/'.$produk_related->foto_produk) ?>" 
 								alt="<?php echo $produk_related->nama_produk ?>">
 

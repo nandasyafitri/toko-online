@@ -65,7 +65,9 @@
 </head>
 <body onload="print()">
 	<div class="cetak">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		<img src="<?php echo base_url('assets/upload/image/'.$site->logo) ?>" width="50" height="50" alt="<?php echo $site->namaweb ?> | <?php echo $site->tagline ?>">
+		<h1>Laporan Penjualan <?php echo $site->namaweb ?></h1>
+    <table class="table table-bordered" width="100%" cellspacing="0">
         <thead>
         <tr>
             <th>No</th>

@@ -10,13 +10,35 @@
 					<br><br>
 
 					<?php if($this->session->flashdata('sukses')) {
-						echo '<div class="alert alert-warning">';
+						echo '<div class="alert alert-info">';
 						echo $this->session->flashdata('sukses');
 						echo '</div>';
 					} ?>
 				
 				<p class="alert alert-success">
-					Terimakasih, barang yang sudah anda beli akan segera kami proses
+					Terimakasih, produk yang sudah anda beli akan segera kami proses, silahkan melakukan pembayaran dalam batas waktu 2x24 jam. jika pembayaran melewati batas waktu yang telah di tentukan maka pesanan anda kami batalkan. 
+
+					
+						<table class="table table-bordered" width="100%">
+								<thead>
+									<tr class="bg-info">
+										<th>NAMA BANK </th>
+										<th>NOMOR REKENING</th>
+										<th>NAMA PEMILIK</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php $no=1; foreach($rekening as $rekening) { ?>
+									<tr>
+									<td><?php echo $rekening->nama_bank ?></td>
+									<td><?php echo $rekening->nomor_rekening ?></td>
+									<td><?php echo $rekening->nama_pemilik ?></td>
+									</tr>
+								 <?php $no++; ?>
+								<?php } ?>
+								</tbody>
+							</table>
+						 
 
 
 				</div>

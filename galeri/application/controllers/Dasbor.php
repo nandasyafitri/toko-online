@@ -66,6 +66,21 @@ class Dasbor extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
+	//konfirmasi barang diterima
+	public function konfirmasi_diterima($kode_transaksi)
+	{
+
+		$status_bayar	= "Diterima";
+		$data = array('status_bayar'	 => $status_bayar, 
+					  'kode_transaksi'	 =>$kode_transaksi );
+
+		$this->transaksi_model->update($data);
+		$this->session->set_flashdata('sukses', 'Terimakasih');
+
+		redirect(base_url('dasbor'),'refresh');
+
+	}
+
 	//profil
 	public function profil()
 	{

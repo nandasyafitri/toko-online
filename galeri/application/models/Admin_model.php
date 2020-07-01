@@ -28,6 +28,7 @@ class Admin_model extends CI_Model {
         $this->db->from('transaksi');
         $this->db->join('header_transaksi', 'transaksi.kode_transaksi = header_transaksi.kode_transaksi', 'left');
         $this->db->where('header_transaksi.status_bayar', 'Dikirim');
+        $this->db->or_where('header_transaksi.status_bayar', 'Diterima');
         $query = $this->db->get();
 		return $query->row();
     }

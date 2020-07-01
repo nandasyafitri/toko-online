@@ -48,7 +48,7 @@
 					<td> : <?php echo date('d-m-Y',strtotime($header_transaksi->tanggal_transaksi)) ?></td>
 				</tr>
 				<tr>
-					<td>JUMLAH TOTAL</td>
+					<td>JUMLAH TOTAL (Total Belanjaan + Ongkos Kirim) </td>
 					<td> : <?php echo number_format($header_transaksi->jumlah_transaksi) ?></td>
 				</tr>
 				<tr>
