@@ -136,8 +136,9 @@ class Produk extends CI_Controller {
 		$site 			=$this->konfigurasi_model->listing();
 		$produk 		= $this->produk_model->read($slug_produk);
 		$id_produk 		= $produk->id_produk;
+		$id_kategori 	= $produk->id_kategori;
 		$foto 			= $this->produk_model->foto($id_produk);
-		$produk_related	= $this->produk_model->home();
+		$produk_related	= $this->produk_model->produk_related($id_kategori);
 
 
 		$data  	= array(	'title' 			=> $produk->nama_produk, 

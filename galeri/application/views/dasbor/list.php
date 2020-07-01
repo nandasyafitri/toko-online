@@ -46,6 +46,10 @@
 									<td><?php echo $header_transaksi->resi ?></td>
 									<td>
 										<div class="btn-group">
+										<?php if($header_transaksi->status_bayar == "Dikirim"){?>
+											<a href="<?php echo base_url('dasbor/konfirmasi_diterima/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-warning btn-sm">
+												<i class="file-alt"></i>Diterima </a>
+										<?php }?>
 										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-success btn-sm">
 											<i class="file-alt"></i>	 Detail </a>
 										<a href="<?php echo base_url('dasbor/konfirmasi/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-info btn-sm">

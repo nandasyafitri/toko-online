@@ -1,5 +1,5 @@
 	<!-- konfigurasi API Raja Ongkir -->
-	<?php
+<?php
 
 $curl = curl_init();
 
@@ -24,7 +24,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  //echo $response;
+  echo $response;
   $provinsi = json_decode($response, true);
 }
 ?>
@@ -200,7 +200,7 @@ if ($err) {
 									<td>
 										<div class="form-group">  
 										<select class="form-control" id="kurir" onchange="getservice()">
-											<option value=""> Pilih Kurir</option>
+											<option value="" > Pilih Kurir</option>
 											<option value="jne">JNE</option>
 											<option value="tiki">TIKI</option>
 											<option value="pos">POS Indonesia</option>

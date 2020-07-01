@@ -191,8 +191,8 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 		function getservice()
 		{
 			//ambil data dari belanja/checkout
-			var origin			= $('#kota_asal').val()
-			var destination 	= $('#kota_tujuan').find(":selected").val()
+			var origin			= $('#kota_asal').val()//7
+			var destination 	= $('#kota_tujuan').find(":selected").val()//17
 			var weight 			= $('#berat').val()
 			var courier 		= $("#kurir").find(":selected").val()
 			//pakai ajax untuk request data daftar ekspedisi yang tersedia dan ongkirnya
@@ -228,7 +228,7 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 						//menampilkan data yg direturn
 						var baris =''
 						for(var i = 0; i< data.rajaongkir.results[0].costs.length ; i++){
-							baris += '<td>'
+							baris = '<td>'
 							baris += '<div class="card">'
 							//menampilkan nama ekspedisi
 							baris += '<h5 class="card-title">'+data.rajaongkir.results[0].costs[i].service+'</h5>'

@@ -153,8 +153,8 @@
 
 		<div class="from-group row ">
 			<label class="col-sm-2 col-form-label">Syarat dan Ketentuan</label>
-		   <div class="col-sm-5">
-			<textarea name="syarat_ketentuan" class="form-control" placeholder="Rekening Pembayaran">
+		   <div class="col-sm-10">
+			<textarea name="syarat_ketentuan" class="form-control" placeholder="Rekening Pembayaran" id="editor">
 				<?php echo $konfigurasi->syarat_ketentuan ?></textarea>
 			</div>
 		</div>

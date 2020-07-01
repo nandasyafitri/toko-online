@@ -43,6 +43,24 @@ class Produk_model extends CI_Model {
 		return $query->result();
 	}
 
+	//listing all produk related
+	public function produk_related($id_kategori)
+	{
+		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto');
+		$this->db->from('produk');
+		//Join
+		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
+		$this->db->join('foto', 'foto.id_produk = produk.id_produk', 'left');
+		// end join
+
+		$this->db->where('produk.id_kategori', $id_kategori);
+		$this->db->group_by('produk.id_produk');
+		$this->db->order_by('id_produk', 'desc');
+		$this->db->limit(4);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	//Read Produk
 	public function read($slug_produk)
 	{
