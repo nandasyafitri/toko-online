@@ -154,7 +154,7 @@ class Produk extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
-	public function tambah_review($id_produk)
+	public function tambah_review()
 	{
 		//Validasi Input
 		$valid = $this->form_validation;
@@ -168,7 +168,7 @@ class Produk extends CI_Controller {
 		$site 			=$this->konfigurasi_model->listing();
 		$produk 		= $this->produk_model->read($slug_produk);
 		$id_produk 		= $produk->id_produk;
-		$id_kategori	=$produk->id_kategori;
+		$id_kategori	= $produk->id_kategori;
 		$foto 			= $this->produk_model->foto($id_produk);
 		$produk_related	= $this->produk_model->produk_related($id_kategori);
 		$review			= $this->produk_model->review($id_produk);
@@ -180,7 +180,7 @@ class Produk extends CI_Controller {
 							'produk_related'	=> $produk_related,
 							'review'			=> $review,
 							'foto'				=> $foto,
-							'isi'				=> 'produk/detail'
+							'isi'				=> 'produk/isi'
 						);
 
 		$this->load->view('layout/wrapper', $data, FALSE);
@@ -194,7 +194,7 @@ class Produk extends CI_Controller {
 						  'isi' 		=> $i->post('isi')
 					);
 		 	$this->produk_model->tambah_review($data);
-		 	redirect(base_url('produk/detail'),'refresh');
+		 	redirect(base_url('produk/'),'refresh');
 		 }
 		 // end masuk database
 

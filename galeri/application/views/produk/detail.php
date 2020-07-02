@@ -142,31 +142,29 @@
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<?php 	 
-						echo form_open(base_url('produk/tambah_review')); ?>
+					<?php if($this->session->userdata('id_pelanggan')!=0){?>
+					<?php echo form_open(base_url('produk/tambah_review')); ?>
 
 					 <input type="hidden" name="id_pelanggan" value="<?php  echo $this->session->userdata('id_pelanggan') ?>">
 					 <input type="hidden" name="id_produk" value="<?php echo $produk->id_produk ?>">	
 
 						<tr>
-							 <td> <textarea name="isi" class="form-control" placeholder="">
-							  </textarea> </td>
+							 <td><textarea name="isi" class="form-control" placeholder=""></textarea> </td>
 						 </tr>
 						 <td> 
 				      		<button class="btn btn-outline-success" type="submit">
 				      			<i class="fa fa-save">Post</i>
 				      		</button>
 						</td>
-						<?php
-						echo form_close(); ?>
+						<?php echo form_close(); ?>
+					<?php }?>
 						 <hr>
-						 <?php 	
-						 	foreach ($review as  $review) { ?>
-						<tr>
-							 <td><<?php echo $review->nama_pelanggan ?></td> <br><br>
-							 <td><?php echo $review->isi ?></td>
-						 </tr>
-						<?php } ?>
+						<?php foreach($review as $reviews){?>
+							<tr>
+								<td><p><?php echo $reviews->nama_pelanggan ?></p></td><br>
+								<td><p class="text-right"><?php echo $reviews->isi ?></p></td><br>
+							</tr>
+						<?php } ?>			
 					</div>
 				</div>
 			</div>

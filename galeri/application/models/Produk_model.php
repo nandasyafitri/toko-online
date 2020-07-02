@@ -204,10 +204,10 @@ class Produk_model extends CI_Model {
 		$this->db->from('review');
 		$this->db->join('pelanggan', 'review.id_pelanggan = pelanggan.id_pelanggan', 'left');
 		$this->db->join('produk', 'review.id_produk = produk.id_produk', 'left');
-		$this->db->where('produk.id_produk', $id_produk);
+		$this->db->where('review.id_produk', $id_produk);
 		$this->db->order_by('review.tanggal_post', 'desc');
 		$query = $this->db->get();
-		return $query->row();
+		return $query->result();
 	}
 
 	public function tambah_review($data)
@@ -262,9 +262,7 @@ class Produk_model extends CI_Model {
 	{
 		$this->db->where('id_foto', $data['id_foto']);
 		$this->db->delete('foto', $data);
-	}
-	
-	
+	}	
 
 	//update stok produk
 	public function update_stok($data)
