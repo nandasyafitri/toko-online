@@ -7,11 +7,14 @@ class Blog extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('blog_model');
+		$this->load->model('produk_model');
+		$this->load->model('kategori_model');
     }
     //listing data blog
 	public function index()
 	{	
 		$site =$this->konfigurasi_model->listing();
+		$listing_kategori	=$this->produk_model->listing_kategori();
 
 		//ambil data total
 		$total =$this->blog_model->total_blog();
@@ -48,19 +51,28 @@ class Blog extends CI_Controller {
 		// ambil data blog
 		$page 	= ($this->uri->segment(3))? ($this->uri->segment(3)-1) * $config['per_page']:0;
 		$blog =$this->blog_model->blog($config['per_page'],$page);
+		$produk_related	= $this->produk_model->home1();
 
 
 		//paginasi end
 
 		$data  	= array(	'title' 			=> 'Blog '.$site->namaweb, 
 							'site'				=> $site,
+							'listing_kategori'	=> $listing_kategori,
 							'blog'			    => $blog,
+							'produk_related'	=> $produk_related,
 							'pagin'				=> $this->pagination->create_links(),
 							'isi'				=> 'blog/list'
 						);
 
 		$this->load->view('layout/wrapper', $data, FALSE);
     }
+
+
+
+
+
+
     	//Detail Blog
 	public function detail($id)
 	{

@@ -53,6 +53,7 @@
                             <option value="">PILIH</option>
                             <option value="Dikirim">Dikirim</option>
                             <option value="Batal">Batal</option>
+                            <option value="Diterima">Diterima</option>
                         </select>
                     </td>
 				</tr>

@@ -14,7 +14,7 @@ class Blog extends CI_Controller {
 	public function index()
 	{
 		$blog = $this->blog_model->listing();
-		$data  = array('title' => 'Data Blog',
+		$data  = array('title' => 'Data blog',
 						'blog' => $blog,
 					    'isi' => 'admin/blog/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);

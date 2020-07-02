@@ -52,13 +52,13 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Search
+						<a href="<?php echo base_url('sk') ?>" class="s-text7">
+							Syarat Dan Ketentuan
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="<?php echo base_url('about') ?>" class="s-text7">
 							About Us
 						</a>
 					</li>
@@ -289,7 +289,7 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 						$('#halaman').empty()
 						$('#halaman').html(response)
 					},
-					//jika request gagal					
+					//jika request gagal, Sebuah fungsi untuk menjalankan jika permintaan gagal.					
 					error: function(xhr, status, error) {
 						alert("Gagal mengambil data")
 						console.log(xhr);

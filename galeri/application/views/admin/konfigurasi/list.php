@@ -145,17 +145,26 @@
 		<div class="from-group row ">
 			<label class="col-sm-2 col-form-label">About</label>
 		   <div class="col-sm-5">
-			<textarea name="about" class="form-control" placeholder="Rekening Pembayaran">
+			<textarea name="about" class="form-control" placeholder="About">
 				<?php echo $konfigurasi->about ?></textarea>
 			</div>
 		</div>
 		<br>
 
 		<div class="from-group row ">
-			<label class="col-sm-2 col-form-label">Syarat dan Ketentuan</label>
-		   <div class="col-sm-10">
-			<textarea name="syarat_ketentuan" class="form-control" placeholder="Rekening Pembayaran" id="editor">
-				<?php echo $konfigurasi->syarat_ketentuan ?></textarea>
+			<label class="col-sm-2 col-form-label">Syarat dan Ketentuan Pelanggan</label>
+		   <div class="col-sm-5">
+			<textarea name="syarat_ketentuan_pelanggan" class="form-control"  id="editor" placeholder="Syarat dan Ketentuan Pelanggan">
+				<?php echo $konfigurasi->syarat_ketentuan_pelanggan ?></textarea>
+			</div>
+		</div>
+		<br>
+
+		<div class="from-group row ">
+			<label class="col-sm-2 col-form-label">Syarat dan Ketentuan UMKM</label>
+		   <div class="col-sm-5">
+			<textarea name="syarat_ketentuan_umkm" class="form-control"  placeholder="Syarat dan Ketentuan UMKM">
+				<?php echo $konfigurasi->syarat_ketentuan_umkm ?></textarea>
 			</div>
 		</div>
 		<br>

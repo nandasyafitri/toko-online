@@ -241,11 +241,15 @@ if ($err) {
 
 			<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
 				<div class="flex-w flex-m w-full-sm">
-				<h1>Pemesanan dan Pembatalan</h1><hr>	
+				<h2>Pemesanan dan Pembatalan</h2>
+				<p></p>
+				<p></p>	
+				<br>
+				<br>
 					<li class="text-justify">1.	Pemesanan bisa Anda lakukan untuk tujuan pengiriman ke seluruh wilayah yang terlayani oleh pihak jasa ekspedisi yang kami tunjuk. Untuk mempercepat proses pemesanan, silakan konfirmasi ke Customer Service kami setelah Anda melakukan pemesanan.</li>
 					<li class="text-justify">2.	Keterangan mengenai produk dan cara belanja di galeriajangambe.com  kami anggap telah Anda pelajari terlebih dahulu.</li>
 					<li class="text-justify">3.	Kami meng-update informasi produk setiap awal pekan. Tetapi, jika ada kesalahan teknis yang menyebabkan harga, stok, atau informasi lainnya menjadi tidak benar dan Anda terlanjur melakukan pemesanan, maka kami akan menginformasikan dan memberi pilihan kepada Anda untuk tetap memesan produk tersebut atau membatalkannya.</li>
-					<li class="text-justify">4.	Kami memberikan batas waktu pembayaran selama 1x24 jam sejak Anda menyelesaikan transaksi pembelian. Apabila Anda belum melakukan pembayaran setelah batas waktu tersebut, maka kami dapat membatalkan pesanan Anda.</li>
+					<li class="text-justify">4.	Kami memberikan batas waktu pembayaran selama 2x24 jam sejak Anda menyelesaikan transaksi pembelian. Apabila Anda belum melakukan pembayaran setelah batas waktu tersebut, maka kami dapat membatalkan pesanan Anda.</li>
 					<li class="text-justify">5.	Pembatalan pesanan dapat Anda lakukan sebelum pembayaran. Jika Anda telah melakukan pembayaran, pesanan tidak dapat Anda batalkan; Anda hanya diperbolehkan melakukan penukaran pesanan dengan produk lain sesuai jumlah pembayaran yang Anda tunaikan. Penukaran pesanan akan diproses melalui transaksi offline. Silakan hubungi Customer Service kami melalui telepon atau email.</li>
 				</div>
 

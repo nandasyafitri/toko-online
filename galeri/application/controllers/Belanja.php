@@ -13,6 +13,7 @@ class Belanja extends CI_Controller {
 		$this->load->model('pelanggan_model');
 		$this->load->model('header_transaksi_model');
 		$this->load->model('transaksi_model');
+		$this->load->model('rekening_model');
 		//Load helper random string
 		$this->load->helper('string');
 		date_default_timezone_set('Asia/Jakarta');
@@ -34,7 +35,10 @@ class Belanja extends CI_Controller {
 	public function sukses()
 	{
 
+		$rekening 		= $this->rekening_model->listing();
+
 		$data =array(	'title'		=> 'Belanja Berhasil',
+						'rekening'			=> $rekening,
 						'isi'		=> 'belanja/sukses'
 					);
 		$this->load->view('layout/wrapper', $data, FALSE);
@@ -181,7 +185,7 @@ class Belanja extends CI_Controller {
 			$this->cart->insert($data);
 			redirect(base_url('belanja'), 'refresh');
 		}else{
-			$this->session->set_flashdata('gagal','Gagal add ke cart');
+			$this->session->set_flashdata('gagal','Pembelian Tidak Dapat Dilakukan Karena Produk Sudah Habis ');
 			
 		// Redirect page
 		redirect($redirect_page,'refresh');

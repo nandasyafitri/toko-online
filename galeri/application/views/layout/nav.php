@@ -6,8 +6,8 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
  ?>
 	<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
-					<img src="<?php echo base_url('assets/upload/image/'.$site->logo) ?>" width="150" height="800" alt="<?php echo $site->namaweb ?> | <?php echo $site->tagline ?>">
+				<a href="<?php echo base_url('about') ?>" class="logo">
+					<img src="<?php echo base_url('assets/upload/image/'.$site->logo) ?>" width="100" height="400" alt="<?php echo $site->namaweb ?> | <?php echo $site->tagline ?>">
 				</a>
 
 				<!-- Menu -->
@@ -17,7 +17,11 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 
 							<!-- menu home -->
 							<li>
-								<a href="<?php echo base_url() ?>">Beranda</a>
+								<a href="<?php echo base_url() ?>">Home</a>
+							</li>
+
+							<li>
+								<a href="<?php echo base_url('about') ?>">Profil</a>
 							</li>
 
 							<!-- menu produk -->
@@ -36,14 +40,6 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 
 							<li>
 								<a href="<?php echo base_url('blog') ?>">Blog</a>
-							</li>
-
-							<li>
-								<a href="<?php echo base_url('about') ?>">About</a>
-							</li>
-							
-							<li>
-								<a href="<?php echo base_url('kontak') ?>">Contact</a>
 							</li>
 
 							<li>
@@ -110,7 +106,7 @@ $nav_produk_mobile =$this->konfigurasi_model->nav_produk();
 									</div>
 
 									<div class="header-cart-item-txt">
-										<a href="<?php echo base_url('produk/detail/'.$produknya->nama_produk) ?>" class="header-cart-item-name">
+										<a href="<?php echo base_url('produk/detail/'.$produknya->slug_produk) ?>" class="header-cart-item-name">
 											<?php echo $keranjang['name'] ?>
 										</a>
 

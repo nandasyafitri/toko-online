@@ -21,37 +21,45 @@
 		</span>
 	</div>
 
-	<!-- Product Detail -->
-	<div class="container bgwhite p-t-35 p-b-80">
-		<div class="flex-w flex-sb">
-			<div class="w-size13 p-t-30 respon5">
-				<div class="wrap-slick3 flex-sb flex-w">
-					<div class="wrap-slick3-dots"></div>
-
-					<div class="slick3">
-
-						<div class="item-slick3" data-thumb="<?php echo base_url('assets/upload/image/thumbs/'.$blog->gambar) ?>">
-							<div class="wrap-pic-w">
-								<img src="<?php echo base_url('assets/upload/image/'.$blog->gambar) ?>" alt="<?php echo $blog->judul ?>">
+<section class="bgwhite p-t-60 p-b-25">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-lg-9 p-b-80">
+					<div class="p-r-50 p-r-0-lg">
+						<div class="p-b-40">
+							<div class="blog-detail-img wrap-pic-w">
+								<img src="<?php echo base_url('assets/upload/image/'.$blog->gambar) ?>" alt="<?php echo $blog->gambar ?>" width="820" height="481">
 							</div>
+
+							<div class="blog-detail-txt p-t-33">
+								<h4 class="p-b-11 m-text24">
+									<?php echo $blog->judul ?>
+								</h4>
+
+								<div class="s-text8 flex-w flex-m p-b-21">
+									<span>
+										By Admin
+										<span class="m-l-3 m-r-6">|</span>
+									</span>
+
+									<span>
+										<?php echo $blog->tanggal_upload ?>
+										<span class="m-l-3 m-r-6">|</span>
+									</span>
+								</div>
+
+								<p class="p-b-25">
+									<?php echo $blog->isi ?>
+								</p>
+
+								<p class="p-b-25">
+									
+								</p>
+							</div>
+
 						</div>
-						
 					</div>
 				</div>
 			</div>
-
-
-			<div class="w-size14 p-t-30 respon5">
-				<h1 class="product-detail-name m-text25 p-b-13">
-					<?php echo $title ?>
-				</h1>
-
-				<p class="s-text8 p-t-10">
-					<?php echo $blog->isi ?>
-				</p>
-	
-	
-			</div>
 		</div>
-	</div>
-
+	</section>

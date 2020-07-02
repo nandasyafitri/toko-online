@@ -25,6 +25,24 @@ class Produk_model extends CI_Model {
 		return $query->result();
 	}
 
+	//listing all produk terkait
+	public function produk_related($id_kategori)
+	{
+		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto');
+		$this->db->from('produk');
+		//Join
+		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
+		$this->db->join('foto', 'foto.id_produk = produk.id_produk', 'left');
+		// end join
+		$this->db->where('produk.id_kategori', $id_kategori);
+		$this->db->group_by('produk.id_produk');
+		$this->db->order_by('id_produk', 'desc');
+		$this->db->limit(6);
+		$query = $this->db->get();
+		return $query->result();
+		
+	}
+
 	//listing all produk home
 	public function home()
 	{
@@ -43,8 +61,8 @@ class Produk_model extends CI_Model {
 		return $query->result();
 	}
 
-	//listing all produk related
-	public function produk_related($id_kategori)
+	//listing all produk home beranda/dashboard
+	public function home1()
 	{
 		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto');
 		$this->db->from('produk');
@@ -53,9 +71,9 @@ class Produk_model extends CI_Model {
 		$this->db->join('foto', 'foto.id_produk = produk.id_produk', 'left');
 		// end join
 
-		$this->db->where('produk.id_kategori', $id_kategori);
+		$this->db->where('produk.status_produk', 'Publish');
 		$this->db->group_by('produk.id_produk');
-		$this->db->order_by('id_produk', 'desc');
+		$this->db->order_by('tanggal_post', 'desc');
 		$this->db->limit(4);
 		$query = $this->db->get();
 		return $query->result();
@@ -108,15 +126,6 @@ class Produk_model extends CI_Model {
 
 	}
 
-	//Total Produk filter by price
-	public function total_produk_filter_by_price($lower_price, $upper_price){
-		$this->db->select('COUNT(*) AS total');
-		$this->db->from('produk');
-		$this->db->where('harga_produk','>', $lower_price);
-		$this->db->where('harga_produk','<', $upper_price);
-		$query	= $this->db->get();
-		return $query->row();
-	}
 
 	//Tampil kategori produk
 	public function kategori($id_kategori,$limit,$start)
@@ -188,6 +197,24 @@ class Produk_model extends CI_Model {
 		return $query->row();
 	}
 
+	// Review
+	public function review($id_produk)
+	{
+		$this->db->select('review.*, pelanggan.nama_pelanggan');
+		$this->db->from('review');
+		$this->db->join('pelanggan', 'review.id_pelanggan = pelanggan.id_pelanggan', 'left');
+		$this->db->join('produk', 'review.id_produk = produk.id_produk', 'left');
+		$this->db->where('produk.id_produk', $id_produk);
+		$this->db->order_by('review.tanggal_post', 'desc');
+		$query = $this->db->get();
+		return $query->row();
+	}
+
+	public function tambah_review($data)
+	{
+		$this->db->insert('review', $data);
+	}
+
 	 //foto
 	public function foto($id_produk)
 	{
@@ -237,22 +264,7 @@ class Produk_model extends CI_Model {
 		$this->db->delete('foto', $data);
 	}
 	
-	//filter products by price
-	public function filter_by_price($lower_price, $upper_price){
-		$this->db->select('produk.*, kategori.nama_kategori, kategori.slug_kategori, COUNT(foto.id_foto) AS total_foto');
-		$this->db->from('produk');
-		//Join
-		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
-		$this->db->join('foto', 'foto.id_produk = produk.id_produk', 'left');
-		// end join
-
-		$this->db->where('produk.harga_produk >', $lower_price);
-		$this->db->where('produk.harga_produk <', $upper_price);
-		$this->db->group_by('produk.id_produk');
-		$this->db->order_by('id_produk', 'desc');
-		$query = $this->db->get();
-		return $query->result();
-	}
+	
 
 	//update stok produk
 	public function update_stok($data)

@@ -11,7 +11,7 @@
 					<div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
 						<!-- block1 -->
 						<div class="block3-img dis-block hov-img-zoom">
-							<img src="<?php echo base_url() ?>assets/template/images//banner-02.jpg" alt="IMG-BENNER">
+							<img src="<?php echo base_url() ?>assets/template/images/foto/banner-02.jpg" alt="IMG-BENNER">
 							<div class="block1-wrapbtn w-size2">
 								<!-- Button -->
 								<a href="<?php echo base_url('produk/kategori/'.$kategori->slug_kategori) ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">

@@ -136,20 +136,70 @@ class Produk extends CI_Controller {
 		$site 			=$this->konfigurasi_model->listing();
 		$produk 		= $this->produk_model->read($slug_produk);
 		$id_produk 		= $produk->id_produk;
-		$id_kategori 	= $produk->id_kategori;
+		$id_kategori	=$produk->id_kategori;
 		$foto 			= $this->produk_model->foto($id_produk);
 		$produk_related	= $this->produk_model->produk_related($id_kategori);
+		$review			= $this->produk_model->review($id_produk);
 
 
 		$data  	= array(	'title' 			=> $produk->nama_produk, 
 							'site'				=> $site,
 							'produk'			=> $produk,
 							'produk_related'	=> $produk_related,
+							'review'			=> $review,
 							'foto'				=> $foto,
 							'isi'				=> 'produk/detail'
 						);
 
 		$this->load->view('layout/wrapper', $data, FALSE);
+	}
+
+	public function tambah_review($id_produk)
+	{
+		//Validasi Input
+		$valid = $this->form_validation;
+
+		$valid->set_rules('isi', 'Isi','required', 
+			 			array('required' => '%s Harus Diisi' ));
+		if ($valid->run()===FALSE) {
+		// End Validasi
+
+
+		$site 			=$this->konfigurasi_model->listing();
+		$produk 		= $this->produk_model->read($slug_produk);
+		$id_produk 		= $produk->id_produk;
+		$id_kategori	=$produk->id_kategori;
+		$foto 			= $this->produk_model->foto($id_produk);
+		$produk_related	= $this->produk_model->produk_related($id_kategori);
+		$review			= $this->produk_model->review($id_produk);
+
+
+		$data  	= array(	'title' 			=> $produk->nama_produk, 
+							'site'				=> $site,
+							'produk'			=> $produk,
+							'produk_related'	=> $produk_related,
+							'review'			=> $review,
+							'foto'				=> $foto,
+							'isi'				=> 'produk/detail'
+						);
+
+		$this->load->view('layout/wrapper', $data, FALSE);
+
+		//masuk database
+		 }else{
+		 	$i = $this->input;
+		 	
+		 	$data = array('id_produk' 	=> $i->post('id_produk'),
+						  'id_pelanggan'=> $i->post('id_pelanggan'),
+						  'isi' 		=> $i->post('isi')
+					);
+		 	$this->produk_model->tambah_review($data);
+		 	redirect(base_url('produk/detail'),'refresh');
+		 }
+		 // end masuk database
+
+
+
 	}
 
 	

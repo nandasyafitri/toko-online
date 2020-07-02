@@ -27,13 +27,13 @@
 
 						<table class="table table-bordered" width="100%">
 							<thead>
-								<tr class="bg-success">
+								<tr class="bg-info">
 									<th>NO</th>
 									<th>KODE TRANSAKSI</th>
 									<th>TANGGAL</th>
 									<th>JUMLAH TOTAL</th>
 									<th>JUMLAH ITEM</th>
-									<th>STATUS BAYAR</th>
+									<th>STATUS</th>
 									<th>ACTION</th>
 								</tr>
 							</thead>
@@ -48,9 +48,10 @@
 									<td><?php echo $header_transaksi->status_bayar ?></td>
 									<td>
 										<div class="btn-group">
-										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-success btn-sm">
+										<a href="<?php echo base_url('dasbor/detail/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-outline-primary btn-sm">
 											<i class="file-alt"></i>	 Detail </a>
-										<a href="<?php echo base_url('dasbor/konfirmasi/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-info btn-sm">
+											
+										<a href="<?php echo base_url('dasbor/konfirmasi/'.$header_transaksi->kode_transaksi) ?>" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-upload"></i>	 Konfirmasi Pembayaran </a>
 											</div>
 									</td>
