@@ -147,9 +147,10 @@
 
 					 <input type="hidden" name="id_pelanggan" value="<?php  echo $this->session->userdata('id_pelanggan') ?>">
 					 <input type="hidden" name="id_produk" value="<?php echo $produk->id_produk ?>">	
+					 <input type="hidden" name="slug_produk" value="<?php echo $produk->slug_produk ?>">	
 
 						<tr>
-							 <td><textarea name="isi" class="form-control" placeholder=""></textarea> </td>
+							 <td><textarea name="isi" class="form-control" placeholder="" required></textarea> </td>
 						 </tr>
 						 <td> 
 				      		<button class="btn btn-outline-success" type="submit">
