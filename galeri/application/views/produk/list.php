@@ -57,6 +57,8 @@
 
 					<!-- Product -->
 					<div class="row produk" id="produk" >
+					<?php $jumlah_produk = count($produk) ?>
+					<?php if($jumlah_produk >0){?>
 						<?php foreach ($produk as $produk) { ?>
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<?php 
@@ -114,8 +116,9 @@
 							 echo form_close(); ?>
 						</div>
 						<?php } ?>
-						<!-- Pagination -->
-						<?php echo $pagin; ?>
+					<?php }else{ ?>
+						<p>Produk tidak ditemukan</p>
+					<?php } ?>
 					</div>
 
 					
