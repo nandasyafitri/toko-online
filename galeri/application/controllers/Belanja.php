@@ -59,12 +59,6 @@ class Belanja extends CI_Controller {
 			$pelanggan  	= $this->pelanggan_model->sudah_login($email,$nama_pelanggan);
 
 			$keranjang	= $this->cart->contents();
-			$cart	= $this->cart->contents();
-			//ambil data jumlah produk
-			$qty = 0;
-			foreach($cart as $krj){
-				$qty = (int)($krj['qty']);
-			}
 
 			//Validasi Input
 			$valid = $this->form_validation;
@@ -77,8 +71,6 @@ class Belanja extends CI_Controller {
 
 			$valid->set_rules('email','Email','required|valid_email', array('required' => '%s Harus Diisi', 'valid_email' => '%s Tidak Valid'));
 
-			
-
 			if ($valid->run()===FALSE) {
 			// End Validasi
 
@@ -90,10 +82,14 @@ class Belanja extends CI_Controller {
 							);
 				$this->load->view('layout/wrapper', $data, FALSE);
 				// Masuk database
+				// jumlah_transakasi = '1000' ==>string, 
+				//kurir pilihan = '500' ==> string
+				// hasil = '1000500' ==>string
 			}else{
 				
 				if(true){
 					$i = $this->input;
+					//$jumlah_transaksi = $i->post('jumlah_transaksi') + $i->post('kurir-pilihan');
 					$jumlah_transaksi = floatval($i->post('jumlah_transaksi')) + floatval($i->post('kurir-pilihan'));
 					$data = array(	'id_pelanggan'		=> $pelanggan->id_pelanggan,
 									'nama_pelanggan'	=> $i->post('nama_pelanggan'),

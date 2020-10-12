@@ -204,10 +204,6 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 				//return data atau respond data dalam json
 				dataType: 'json',
                 cache: false,
-				beforeSend: function() {
-					$('.service').append("<div class='modal'></div>")
-  					$('.service').addClass("loading")
-				},
 				//data yang dikirim ke controller
                 data: {
 					origin		: origin,
@@ -217,8 +213,6 @@ $nav_produk_footer  =$this->konfigurasi_model->nav_produk();
 				},
 				//jika request berhasil
 				success: function(response) {
-					$('.service').removeClass("loading")
-					//kosongkan elemen di kelas service
 					$(".service").empty()
 					var data = response
 					var status = data.rajaongkir.status.code
